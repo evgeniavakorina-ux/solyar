@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Построй свой солярный прогноз — Евгения Вакорина</title>
+<meta name="description" content="По четырём показателям узнай, какой будет фон твоего года, возможный итог, ключевая и эмоциональная тема.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --milk:#F7F1E8; --paper:#FBF7F1; --beige:#D9C3A5; --caramel:#B98255; --choco:#4B3328;
+  --gold:#C89B3C; --honey:#D9A441; --terra:#B85C38; --burg:#6F263D; --deep:#33231E;
+  --line:rgba(75,51,40,.16); --soft:rgba(217,195,165,.28);
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --display:'Playfair Display',Georgia,serif;
+  --r:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--milk);color:var(--choco);font-family:var(--serif);font-size:20px;line-height:1.5;
+  background-image:radial-gradient(1200px 600px at 100% -10%,rgba(200,155,60,.10),transparent 60%),radial-gradient(900px 500px at -10% 30%,rgba(111,38,61,.06),transparent 60%);
+  background-attachment:fixed}
+button,input,textarea{font:inherit;color:inherit}
+a{color:var(--burg)}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+.hidden{display:none!important}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:20;background:rgba(247,241,232,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px}
+.brand{font-family:var(--display);font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--burg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;background:none;border:0;padding:0}
+.brand span{color:var(--caramel)}
+.toplinks{display:flex;gap:6px}
+.tl{white-space:nowrap;background:none;border:1px solid transparent;border-radius:999px;padding:6px 12px;font-size:16px;font-weight:600;color:var(--choco);cursor:pointer}
+.tl:hover{border-color:var(--line)}
+.tl.on{background:var(--burg);color:var(--milk)}
+
+/* common */
+.eyebrow{font-family:var(--display);font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--caramel);margin:0 0 10px}
+h1,h2,h3{font-family:var(--display);color:var(--deep);font-weight:600;line-height:1.15;margin:0}
+h1{font-size:clamp(34px,6.4vw,56px);letter-spacing:-.01em}
+h1 em{font-style:italic;color:var(--burg);font-weight:500}
+h2{font-size:clamp(26px,4.4vw,36px)}
+h3{font-size:22px}
+p{margin:0 0 14px}
+.lead{font-size:22px;line-height:1.45;color:var(--choco)}
+.muted{color:rgba(75,51,40,.72)}
+.small{font-size:17px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:999px;padding:15px 28px;font-family:var(--display);font-size:16px;letter-spacing:.06em;cursor:pointer;text-decoration:none;transition:transform .15s,box-shadow .15s,background .15s}
+.btn:active{transform:translateY(1px)}
+.btn-main{background:var(--burg);color:var(--milk);box-shadow:0 10px 24px -12px rgba(111,38,61,.7)}
+.btn-main:hover{background:#5c1f33}
+.btn-main[disabled]{background:#b9a79a;box-shadow:none;cursor:not-allowed}
+.btn-ghost{background:transparent;color:var(--burg);border:1.5px solid rgba(111,38,61,.35)}
+.btn-ghost:hover{border-color:var(--burg)}
+.btn-gold{background:var(--gold);color:var(--deep)}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:0 18px 40px -30px rgba(51,35,30,.45)}
+.divider{display:flex;align-items:center;gap:14px;color:var(--gold);margin:44px 0 22px}
+.divider:before,.divider:after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--beige),transparent)}
+section{padding:36px 0}
+details{border-top:1px solid var(--line)}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;padding:16px 36px 16px 0;position:relative;font-weight:700;font-size:21px;color:var(--deep)}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";position:absolute;right:6px;top:12px;font-family:var(--display);font-size:24px;color:var(--gold);transition:transform .2s}
+details[open] summary:after{transform:rotate(45deg)}
+details .dbody{padding:0 0 18px}
+ul.dots{padding:0;margin:0 0 14px;list-style:none}
+ul.dots li{position:relative;padding-left:22px;margin-bottom:8px}
+ul.dots li:before{content:"";position:absolute;left:4px;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+
+/* hero */
+.hero{padding:56px 0 20px;text-align:left}
+.hero .lead{max-width:640px;margin-top:18px}
+.roles{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:30px 0}
+.role{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:20px;position:relative;overflow:hidden}
+.role .glyph{font-family:var(--display);font-size:15px;font-weight:700;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--milk);margin-bottom:12px}
+.role .rname{font-family:var(--display);font-size:19px;color:var(--deep);font-weight:600}
+.role .rrole{font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--caramel);font-family:var(--display);margin:2px 0 8px}
+.role .rq{font-style:italic;font-size:18px;line-height:1.4}
+.c-asc{background:var(--caramel)} .c-mc{background:var(--burg)} .c-sun{background:var(--gold)} .c-moon{background:var(--choco)}
+
+/* picker */
+.pick{margin:0 0 18px;padding:22px 22px 18px}
+.pick-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+.pick-head .glyph{flex:0 0 40px;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--milk);font-family:var(--display);font-weight:700;font-size:14px}
+.pick-title{font-family:var(--display);font-size:20px;color:var(--deep);font-weight:600;line-height:1.2}
+.pick-hint{font-size:17px;color:rgba(75,51,40,.75);margin-top:4px;line-height:1.35}
+.chips{display:grid;grid-template-columns:repeat(12,1fr);gap:6px}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:12px;height:46px;font-family:var(--display);font-size:17px;font-weight:600;cursor:pointer;transition:all .15s;color:var(--choco)}
+.chip:hover{border-color:var(--caramel)}
+.chip.on{color:var(--milk);border-color:transparent;transform:translateY(-1px);box-shadow:0 8px 16px -10px rgba(51,35,30,.6)}
+.pick[data-k=asc] .chip.on{background:var(--caramel)}
+.pick[data-k=mc] .chip.on{background:var(--burg)}
+.pick[data-k=sun] .chip.on{background:var(--gold);color:var(--deep)}
+.pick[data-k=moon] .chip.on{background:var(--choco)}
+.pick-sel{font-size:17px;margin-top:10px;min-height:24px;font-style:italic;color:var(--burg)}
+.period{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+.field label{display:block;font-size:16px;color:rgba(75,51,40,.75);margin-bottom:4px}
+.field input,.field textarea{width:100%;border:1.5px solid var(--line);border-radius:12px;background:#fff;padding:11px 14px;font-size:19px;outline:none;transition:border .15s}
+.field input:focus,.field textarea:focus{border-color:var(--caramel)}
+.field textarea{min-height:88px;resize:vertical;line-height:1.4}
+.sticky-go{position:sticky;bottom:0;padding:14px 0 calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--milk) 30%);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.sticky-go .note{font-size:16px;color:rgba(75,51,40,.7)}
+
+/* summary strip */
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0 10px}
+.sbox{border-radius:16px;padding:14px 14px 12px;color:var(--milk);cursor:pointer;border:0;text-align:left;transition:transform .15s,opacity .15s}
+.sbox .s1{font-family:var(--display);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+.sbox .s2{font-family:var(--display);font-size:22px;font-weight:600;line-height:1.1;margin:4px 0 2px}
+.sbox .s3{font-size:15.5px;line-height:1.25;opacity:.92}
+.sbox.c-sun{color:var(--deep)}
+.sbox.off{opacity:.38}
+.sbox.cur{outline:2.5px solid var(--deep);outline-offset:2px}
+.repeat{background:rgba(200,155,60,.13);border:1px solid rgba(200,155,60,.45);border-radius:16px;padding:16px 18px;margin:14px 0 4px;font-size:18.5px}
+.repeat b{color:var(--burg)}
+
+/* tabs */
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:26px 0 0;padding-bottom:2px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;border:1.5px solid var(--line);background:transparent;border-radius:999px;padding:9px 16px;font-family:var(--display);font-size:14.5px;letter-spacing:.04em;cursor:pointer;white-space:nowrap}
+.tab.on{background:var(--deep);color:var(--milk);border-color:var(--deep)}
+
+/* reading card */
+.card.read{margin-top:16px;padding:0;overflow:hidden}
+.read-head{padding:28px 28px 22px;color:var(--milk);position:relative}
+.read-head.c-sun{color:var(--deep)}
+.read-head .kicker{font-family:var(--display);font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;opacity:.85}
+.read-head h2{color:inherit;margin:8px 0 6px;font-size:clamp(28px,5vw,40px)}
+.read-head .q{font-style:italic;font-size:19px;opacity:.92;max-width:600px}
+.read-head .big{position:absolute;right:22px;top:14px;font-family:var(--display);font-size:86px;line-height:1;opacity:.16;font-weight:700}
+.read-body{padding:26px 28px 10px}
+.blk{margin-bottom:24px}
+.blk-l{font-family:var(--display);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--caramel);margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.blk-l:after{content:"";flex:1;height:1px;background:var(--line)}
+.blk p{margin:0}
+.blk.main p{font-size:21.5px;line-height:1.5;color:var(--deep)}
+.wish{border-left:3px solid var(--gold);padding:6px 0 6px 18px;font-style:italic;font-size:22px;color:var(--burg);margin:0}
+.trap{background:rgba(184,92,56,.08);border-radius:14px;padding:16px 18px}
+.trap .blk-l{color:var(--terra)}
+.ask{background:var(--deep);color:var(--milk);border-radius:14px;padding:18px 20px}
+.ask .blk-l{color:var(--honey)} .ask .blk-l:after{background:rgba(247,241,232,.2)}
+.ask p{font-size:21px;font-style:italic}
+.goals{display:flex;flex-direction:column;gap:8px}
+.goal{display:flex;gap:12px;align-items:flex-start;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:11px 14px;cursor:pointer;font-size:19px;line-height:1.35;transition:all .15s}
+.goal .box{flex:0 0 22px;width:22px;height:22px;border-radius:7px;border:1.5px solid var(--beige);margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:14px;color:transparent;transition:all .15s}
+.goal.on{border-color:var(--gold);background:rgba(200,155,60,.09)}
+.goal.on .box{background:var(--gold);border-color:var(--gold);color:var(--deep)}
+.goal-hint{font-size:16px;color:rgba(75,51,40,.68);margin:8px 0 0}
+.other{padding:16px 28px 24px;border-top:1px solid var(--line);background:rgba(217,195,165,.12)}
+.other .lbl{font-size:16px;color:rgba(75,51,40,.75);margin-bottom:8px}
+.mini{display:grid;grid-template-columns:repeat(12,1fr);gap:5px}
+.mini .chip{height:36px;font-size:14.5px;border-radius:9px}
+.read-nav{display:flex;justify-content:space-between;gap:10px;margin:18px 0 0}
+.read-nav .btn{padding:12px 18px;font-size:14.5px}
+
+/* steps */
+.steps{counter-reset:st;display:flex;flex-direction:column;gap:12px}
+.step{display:flex;gap:16px;align-items:flex-start}
+.step .n{flex:0 0 38px;height:38px;border-radius:50%;border:1.5px solid var(--gold);color:var(--burg);font-family:var(--display);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:16px;margin-top:2px}
+.step b{color:var(--deep)}
+
+/* worksheet */
+.ws .row{margin-bottom:18px}
+.ws .auto{font-size:17.5px;background:var(--soft);border-radius:10px;padding:8px 12px;margin-bottom:6px;color:var(--deep)}
+.ws .auto.empty{color:rgba(75,51,40,.55);font-style:italic}
+.ws .rl{font-family:var(--display);font-weight:600;font-size:17px;color:var(--deep);margin-bottom:6px}
+.ws .rl span{font-family:var(--serif);font-weight:400;font-size:17px;color:rgba(75,51,40,.72)}
+.chosen{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+.chosen .cg{display:flex;gap:10px;align-items:flex-start;font-size:18px;background:rgba(200,155,60,.1);border-radius:10px;padding:8px 12px}
+.chosen .cg i{font-style:normal;font-family:var(--display);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:999px;color:var(--milk);margin-top:3px;white-space:nowrap}
+.chosen .cg i.c-sun{color:var(--deep)}
+.chosen .cg span{flex:1}
+.chosen .cg button{border:0;background:none;color:var(--terra);font-size:20px;cursor:pointer;line-height:1;padding:0 2px}
+.checks{display:flex;flex-direction:column;gap:8px;margin:6px 0 4px}
+.checks .goal{font-size:18px}
+.saved{font-size:15.5px;color:rgba(75,51,40,.6);font-style:italic;min-height:22px}
+
+/* cta */
+.cta{background:var(--deep);color:var(--milk);border-radius:24px;padding:34px 28px;position:relative;overflow:hidden}
+.cta:before{content:"";position:absolute;width:340px;height:340px;border-radius:50%;right:-120px;top:-150px;background:radial-gradient(circle,rgba(217,164,65,.35),transparent 65%)}
+.cta h2{color:var(--milk)}
+.cta p{color:rgba(247,241,232,.86);max-width:600px}
+.cta .who{font-size:17px;color:var(--honey);font-family:var(--display);letter-spacing:.08em;margin-bottom:12px}
+.cta .btn-ghost{color:var(--milk);border-color:rgba(247,241,232,.4)}
+.cta .btn-ghost:hover{border-color:var(--milk)}
+.cta .copied{font-size:16px;color:var(--honey);margin-top:12px;min-height:22px}
+.foot{padding:30px 0 50px;font-size:16px;color:rgba(75,51,40,.6);text-align:center}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--deep);color:var(--milk);padding:12px 20px;border-radius:999px;font-size:17px;opacity:0;pointer-events:none;transition:all .25s;z-index:50;max-width:92vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media (max-width:720px){
+  body{font-size:19px}
+  .chips{grid-template-columns:repeat(6,1fr)}
+  .mini{grid-template-columns:repeat(6,1fr)}
+  .strip{grid-template-columns:repeat(2,1fr)}
+  .roles{grid-template-columns:1fr}
+  .card{padding:20px}
+  .pick{padding:18px 16px 14px}
+  .read-head{padding:24px 20px 18px}
+  .read-body{padding:22px 20px 6px}
+  .other{padding:14px 20px 20px}
+  .period{grid-template-columns:1fr}
+  .toplinks .tl{padding:6px 9px;font-size:15px}
+  .brand{font-size:13px;letter-spacing:.1em}
+}
+@media (max-width:380px){.toplinks .tl.hide-xs{display:none}}
+
+/* print: only worksheet summary */
+#printout{display:none}
+@media print{
+  body{background:#fff;font-size:12pt}
+  body>*:not(#printout){display:none!important}
+  #printout{display:block;padding:0 6mm;color:#33231E}
+  #printout h1{font-size:22pt;margin-bottom:4pt}
+  #printout h3{font-size:13pt;margin:14pt 0 4pt;color:#6F263D}
+  #printout p{margin:0 0 6pt}
+  #printout .pl{border-bottom:1px solid #D9C3A5;padding-bottom:6pt;white-space:pre-wrap}
+  @page{margin:14mm}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <button class="brand" data-go="home">Солярный <span>·</span> прогноз</button>
+    <nav class="toplinks">
+      <button class="tl" data-go="pick">Дома</button>
+      <button class="tl" data-go="result" id="tlResult">Прочтение</button>
+      <button class="tl hide-xs" data-go="sheet">Рабочий лист</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ============ HOME ============ -->
+<div id="v-home" class="view">
+  <div class="wrap">
+    <div class="hero">
+      <p class="eyebrow">Евгения Вакорина · астролог</p>
+      <h1>Построй свой <em>солярный прогноз</em></h1>
+      <p class="lead">По четырём показателям узнай, какой будет фон твоего года, возможный итог, ключевая и эмоциональная тема.</p>
+      <div class="btn-row" style="margin-top:26px">
+        <button class="btn btn-main" data-go="pick">Выбрать дома →</button>
+        <button class="btn btn-ghost" id="toHow">Как пользоваться</button>
+      </div>
+    </div>
+
+    <div class="roles" id="roles"></div>
+
+    <div class="card" style="margin-bottom:8px">
+      <p class="eyebrow">Почему одинаковый дом читается по-разному</p>
+      <p style="margin:0">Второй дом по Асценденту — фон материальных вопросов. По Солнцу — сознательная работа с заработком и ресурсами. По Луне — эмоциональная важность обеспеченности. По МС — возможный материальный итог. Сфера одна, но роль показателя различается.</p>
+    </div>
+
+    <section id="how">
+      <p class="eyebrow">Перед началом</p>
+      <h2 style="margin-bottom:18px">Как пользоваться</h2>
+      <details open>
+        <summary>Запиши период</summary>
+        <div class="dbody"><p>Нужны даты конкретного солнечного возвращения и следующего. Солярный год не начинается автоматически 1 января. Для календарного года иногда понадобятся две разные карты.</p></div>
+      </details>
+      <details>
+        <summary>Не смешивай дома</summary>
+        <div class="dbody"><p>Для Солнца и Луны возьми номер дома самой солярной карты. Для Асцендента и МС найди, в какой дом натальной карты попадает соответствующий солярный угол. Знак Асцендента — отдельный показатель; он не заменяет проекцию в дом.</p>
+        <p class="muted small" style="margin:0">Техническое построение карты сюда не входит — для него используй отдельную инструкцию. При сомнениях в исходных данных сначала уточни расчёт.</p></div>
+      </details>
+      <details>
+        <summary>Открой четыре положения</summary>
+        <div class="dbody"><p>Прочитай фон, возможный итог, ключевую тему и эмоциональную тему. Выдели только то, что связано с твоими обстоятельствами, интересами и реальными решениями.</p></div>
+      </details>
+      <details>
+        <summary>Выбери цели</summary>
+        <div class="dbody"><p>В каждом положении предложены варианты. Достаточно одной подходящей цели или полезного действия. Отсутствие активного дома не запрещает заниматься важной для тебя сферой.</p>
+        <p style="margin:0">Желание помогает назвать то, что тебе важно. Цель уточняет, какое изменение ты хочешь увидеть. Действие связывает это с реальностью. Само совпадение желания с домом не гарантирует его исполнения.</p></div>
+      </details>
+      <details>
+        <summary>Возвращайся к записям</summary>
+        <div class="dbody"><p style="margin:0">Раз в месяц или квартал смотри, что происходит на самом деле. Уточняй планы по новым обстоятельствам, а не пытайся подогнать жизнь под текст.</p></div>
+      </details>
+      <details>
+        <summary>Границы метода</summary>
+        <div class="dbody">
+          <p>Соляр — карта возвращения Солнца к натальному положению. Здесь она используется как астрологическая модель для размышлений и планирования, а не как научно подтверждённый способ предсказывать события. Формулировки описывают символические темы и возможные сценарии.</p>
+          <p>Фраза «чем должен закончиться год» означает желаемый ориентир, а не обязательное событие. МС не назначает событие на последние недели периода: результат может оформиться в любой его части. Для сроков нужны другие данные.</p>
+          <p style="margin:0">Беременность, решение другого человека, медицинский исход, одобрение кредита и гарантированный доход не превращаются в управляемые цели через формулировку желания. Здоровье, финансовые обязательства и юридические вопросы требуют подходящей профессиональной помощи.</p>
+        </div>
+      </details>
+      <div style="margin-top:26px"><button class="btn btn-main" data-go="pick">Выбрать дома →</button></div>
+    </section>
+  </div>
+</div>
+
+<!-- ============ PICK ============ -->
+<div id="v-pick" class="view hidden">
+  <div class="wrap">
+    <section style="padding-bottom:8px">
+      <p class="eyebrow">Шаг 1</p>
+      <h2>Отметь свои четыре дома</h2>
+      <p class="muted" style="margin-top:10px">Если пока знаешь не все — отметь те, что есть. Остальные можно добавить позже.</p>
+    </section>
+    <div id="picks"></div>
+
+    <div class="card pick" style="margin-bottom:8px">
+      <div class="pick-head">
+        <div class="glyph" style="background:var(--beige);color:var(--deep)">✦</div>
+        <div><div class="pick-title">Период соляра <span class="muted" style="font-family:var(--serif);font-weight:400;font-size:17px">— по желанию</span></div>
+        <div class="pick-hint">Дата этого солнечного возвращения и следующего.</div></div>
+      </div>
+      <div class="period">
+        <div class="field"><label for="pStart">Начало</label><input type="date" id="pStart"></div>
+        <div class="field"><label for="pEnd">Окончание</label><input type="date" id="pEnd"></div>
+      </div>
+    </div>
+
+    <div class="sticky-go">
+      <button class="btn btn-main" id="goRead" disabled>Собрать ориентиры →</button>
+      <span class="note" id="pickNote">Выбери хотя бы один дом</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ RESULT ============ -->
+<div id="v-result" class="view hidden">
+  <div class="wrap">
+    <section style="padding-bottom:0">
+      <p class="eyebrow" id="resPeriod">Твой солярный год</p>
+      <h2>Четыре ориентира года</h2>
+      <div class="strip" id="strip"></div>
+      <div id="repeats"></div>
+      <div class="tabs" id="tabs"></div>
+      <div class="card read" id="read"></div>
+      <div class="read-nav">
+        <button class="btn btn-ghost" id="prevT">← Назад</button>
+        <button class="btn btn-main" id="nextT">Дальше →</button>
+      </div>
+    </section>
+
+    <div class="divider">✦</div>
+
+    <section id="combine" style="padding-top:0">
+      <p class="eyebrow">Шаг 3</p>
+      <h2 style="margin-bottom:20px">Как соединить четыре положения</h2>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><div><b>Назови роли.</b> Запиши отдельно фон по Асценденту, фокус по Солнцу, эмоциональную тему по Луне и ориентир результата по МС. Пока не объединяй их в предсказание события.</div></div>
+        <div class="step"><div class="n">2</div><div><b>Найди повтор.</b> Если Солнце и Луна в одном доме, сфера одновременно значима для действий и чувств. Это усиливает тематический акцент, но не доказывает конкретный исход. Нахождение светил в одном доме также не означает автоматически их соединения.</div></div>
+        <div class="step"><div class="n">3</div><div><b>Сопоставь с жизнью.</b> Что уже происходит? Что ты действительно планируешь? Что сейчас неактуально? Пятый дом у разных людей может быть связан с ребёнком, творческим проектом, романтикой или досугом.</div></div>
+        <div class="step"><div class="n">4</div><div><b>Выбери связку.</b> Найди действие, которое поддерживает несколько тем сразу. Например, обучение помогает карьерной цели, а согласованный семейный график позволяет заниматься без постоянных конфликтов.</div></div>
+        <div class="step"><div class="n">5</div><div><b>Оставь место различиям.</b> Не все показатели обязаны складываться в одну цель. Работа, семейная жизнь и отдых могут идти параллельно. Иногда полезнее развести задачи по времени, чем искусственно соединять их.</div></div>
+        <div class="step"><div class="n">6</div><div><b>Проверь границы вывода.</b> Четыре положения не показывают точные сроки и не описывают всю карту. Для подробного прогноза учитываются натальная основа, управители, связи карт, другие методы и обстоятельства человека.</div></div>
+      </div>
+      <p class="muted" style="margin-top:18px">Не нужно находить объяснение каждому событию задним числом. Если тема не откликается, отметь это и продолжай опираться на факты своей жизни.</p>
+      <div style="margin-top:22px"><button class="btn btn-main" data-go="sheet">К рабочему листу →</button></div>
+    </section>
+  </div>
+</div>
+
+<!-- ============ SHEET ============ -->
+<div id="v-sheet" class="view hidden">
+  <div class="wrap">
+    <section style="padding-bottom:10px">
+      <p class="eyebrow">Шаг 4</p>
+      <h2>Мои ориентиры на солярный год</h2>
+      <p class="muted" style="margin-top:10px">Выбери до трёх приоритетов: рабочий лист помогает сократить список задач до посильного. Всё, что ты пишешь, сохраняется только в этом браузере.</p>
+    </section>
+    <div class="card ws" id="ws">
+      <div class="row field"><div class="rl">Период <span>— дата начала и окончания моего соляра</span></div><div class="auto" id="a-period"></div><textarea data-f="period" placeholder="Можно уточнить или дописать"></textarea></div>
+      <div class="row field"><div class="rl">Асцендент <span>— натальный дом проекции и подходящий моей жизни фон</span></div><div class="auto" id="a-asc"></div><textarea data-f="asc" placeholder="Какой фон из прочтения узнаю в своей жизни"></textarea></div>
+      <div class="row field"><div class="rl">Солнце <span>— солярный дом и то, во что хочу вкладывать усилия</span></div><div class="auto" id="a-sun"></div><textarea data-f="sun" placeholder="Во что я сознательно вкладываю усилия"></textarea></div>
+      <div class="row field"><div class="rl">Луна <span>— солярный дом, эмоциональная потребность и доступная поддержка</span></div><div class="auto" id="a-moon"></div><textarea data-f="moon" placeholder="Что мне важно и как я могу себя поддержать"></textarea></div>
+      <div class="row field"><div class="rl">МС <span>— натальный дом проекции и желаемый результат</span></div><div class="auto" id="a-mc"></div><textarea data-f="mc" placeholder="К какому результату хочу прийти"></textarea></div>
+      <div class="row field"><div class="rl">Мои приоритеты <span>— какие одна–три цели я выбираю и почему они важны мне</span></div>
+        <div class="chosen" id="chosen"></div>
+        <textarea data-f="prio" placeholder="Своими словами: что выбираю и почему"></textarea></div>
+      <div class="row field"><div class="rl">Проверь выбранную цель</div>
+        <div class="checks" id="checks"></div></div>
+      <div class="row field"><div class="rl">Реалистичность <span>— что зависит от меня; какие ограничения и ресурсы нужно учесть</span></div><textarea data-f="real"></textarea></div>
+      <div class="row field"><div class="rl">Первый шаг <span>— что именно сделаю и когда</span></div><textarea data-f="step"></textarea></div>
+      <div class="row field"><div class="rl">Проверка <span>— по какому признаку замечу продвижение и когда пересмотрю план</span></div><textarea data-f="check"></textarea></div>
+      <div class="saved" id="saved"></div>
+      <div class="btn-row" style="margin-top:8px">
+        <button class="btn btn-main" id="doPrint">Сохранить в PDF</button>
+        <button class="btn btn-ghost" id="doCopy">Скопировать текст</button>
+        <button class="btn btn-ghost" id="doClear" style="color:var(--terra);border-color:rgba(184,92,56,.35)">Очистить</button>
+      </div>
+    </div>
+    <p class="muted small" style="margin-top:16px">Раз в месяц или квартал возвращайся к записям и сверяй с тем, что происходит на самом деле.</p>
+  </div>
+</div>
+
+<!-- ============ CTA (everywhere except home top) ============ -->
+<div class="wrap" id="ctaWrap">
+  <div class="divider">✦</div>
+  <div class="cta">
+    <div class="who">Евгения Вакорина · астролог, таролог, интегратор ПВС</div>
+    <h2 style="margin-bottom:12px">Остались вопросы по своему соляру?</h2>
+    <p>Четыре показателя дают ориентиры, но не всю картину года. Если что-то не складывается или хочется сверить прочтение с натальной картой — напиши мне.</p>
+    <div class="btn-row" style="margin-top:20px">
+      <a class="btn btn-gold" id="ctaVk" href="https://vk.ru/im?sel=-224753072" target="_blank" rel="noopener">Написать во ВКонтакте</a>
+      <a class="btn btn-ghost" id="ctaTg" href="https://t.me/jain1109" target="_blank" rel="noopener">Написать в Telegram</a>
+    </div>
+    <div class="copied" id="copied"></div>
+  </div>
+</div>
+</main>
+<footer class="foot wrap">© Евгения Вакорина · Солярный прогноз<br>Материал для личной работы. Астрология здесь — модель для размышлений и планирования, а не гарантия событий.</footer>
+<div class="toast" id="toast"></div>
+<div id="printout"></div>
+
+<script>
+const DATA = {"asc":{"1":{"title":"Себя становится больше","Фон года":"Внимание возвращается к тебе: внешности, телу, самостоятельности, личным желаниям и способу заявлять о себе. Может стать тесно в привычной роли, где ты всё время подстраиваешься. Обстоятельства дают повод чаще принимать решения от своего имени. Это фон личного обновления, а его конкретную форму показывают остальные показатели.","Как это бывает":"Ты меняешь подачу, начинаешь своё дело, выходишь из роли помощницы, берёшь инициативу в отношениях или осваиваешь занятие, которого раньше стеснялась. Иногда главным становится уход за собой и более внимательное отношение к телу.","Цели на выбор":"Собрать образ, в котором узнаёшь себя; самостоятельно запустить небольшое начинание; научиться прямо сообщать о своих решениях и границах.","Желание своими словами":"«Хочу увереннее занимать своё место и делать то, что давно важно лично мне».","Что делать":"Выбери одну инициативу, где решение принимаешь ты. Запиши первый шаг и дату. Посмотри, что в одежде, расписании и общении поддерживает новый образ жизни, а что осталось по привычке.","Где можно застрять":"Доказывать самостоятельность через ссоры или ждать полного одобрения. Обновлять только внешнюю оболочку, оставляя прежние неудобные договорённости.","Вопрос к себе":"Если убрать чужие ожидания, какое изменение я действительно хочу начать?"},"2":{"title":"Больше внимания своим ресурсам","Фон года":"На передний план выходят заработок, привычные расходы, вещи, комфорт и ощущение материальной опоры. Хочется понимать, чем ты располагаешь и на что можешь рассчитывать. Второй дом касается и того, как ты используешь время, способности и физические силы: обеспеченность не сводится к сумме на счёте.","Как это бывает":"Пересматриваешь оплату труда, осваиваешь оплачиваемый навык, планируешь покупку, меняешь привычки потребления. Становится заметно, сколько усилий требует привычный уровень жизни и устраивает ли тебя это соотношение.","Цели на выбор":"Наладить учёт поступлений и расходов; создать посильный запас; довести востребованный навык до регулярного применения; запланировать нужную покупку.","Желание своими словами":"«Хочу лучше обеспечивать свои потребности и понимать, куда уходят мои ресурсы».","Что делать":"Зафиксируй текущую ситуацию без оценки себя. Выбери одну материальную цель, её стоимость и реалистичный срок. Отдельно оцени время и силы, которые потребуется вложить.","Где можно застрять":"Измерять собственную ценность доходом, покупать ради успокоения или запрещать себе любые удовольствия. Сам показатель не обещает ни богатства, ни убытков.","Вопрос к себе":"Какое конкретное изменение даст мне больше устойчивости в повседневной жизни?"},"3":{"title":"Год контактов и движения","Фон года":"Повседневность может наполниться разговорами, учёбой, короткими поездками, переписками и организационными вопросами. Важнее становятся ближайшее окружение, братья и сёстры, соседи, знакомые. Новые возможности удобно искать через обмен информацией и практические навыки.","Как это бывает":"Начинаешь писать или вести блог, чаще ездишь по делам, учишься водить, оформляешь документы, осваиваешь рабочую программу. Появляется больше контактов, но каждый требует внимания и времени.","Цели на выбор":"Освоить один прикладной навык; наладить регулярную коммуникацию с аудиторией; завершить документальный вопрос; организовать несколько нужных поездок.","Желание своими словами":"«Хочу легче общаться, понятно выражать свои мысли и применять новые знания».","Что делать":"Выбери обучение под конкретную задачу. Сразу запланируй применение. Собери календарь документов и поездок, а для общения оставь разумные временные границы.","Где можно застрять":"Собирать курсы вместо практики, быть постоянно на связи, путать информационную насыщенность с продвижением. Отдельная поездка или покупка машины не обязательны.","Вопрос к себе":"Какой навык или разговор действительно упростит мою жизнь в этом году?"},"4":{"title":"Дом и личная опора","Фон года":"Больше места занимают дом, семья, место проживания, близкие и ощущение принадлежности. Может захотеться создать свой уклад, разобраться с бытовыми договорённостями или отделить свои желания от семейных ожиданий. Внешних достижений бывает меньше видно, хотя внутри жизни происходит большая работа.","Как это бывает":"Ремонтируешь комнату, готовишь переезд, проводишь больше времени с родными, пересматриваешь распределение домашних дел. Иногда возникает желание работать из дома или завершить этап, который давно перестал ощущаться своим.","Цели на выбор":"Сделать жильё удобнее; наладить семейный ритм; подготовить жилищное решение; обозначить границы помощи родственникам.","Желание своими словами":"«Хочу жить в пространстве и отношениях, где можно выдохнуть и быть собой».","Что делать":"Определи главную бытовую проблему. Обсуди с близкими, кто и что готов менять. Для ремонта или переезда составь отдельный план с ресурсами и сроками.","Где можно застрять":"Взять все семейные обязанности на себя, ждать идеального дома или считать заботу о близких обязанностью отказаться от собственной жизни. Не каждая семейная тема требует примирения любой ценой.","Вопрос к себе":"Что должно измениться дома, чтобы мне стало спокойнее и удобнее жить?"},"5":{"title":"Творчество и вкус к жизни","Фон года":"Хочется создавать, увлекаться, радоваться и показывать то, что получается. Внимание может переходить к собственным проектам, хобби, детям, романтике и досугу. Важен личный интерес: что ты выбираешь, когда у тебя есть возможность выбирать? Пятый дом даёт тему авторства и удовольствия от участия.","Как это бывает":"Возвращаешься к танцам, выступаешь, делаешь авторский продукт, больше участвуешь в увлечениях ребёнка или оживляешь романтическую сторону отношений. Не всякое хобби должно становиться бизнесом.","Цели на выбор":"Создать и показать одну работу; найти регулярное занятие для удовольствия; организовать качественное время с ребёнком; добавить свидания и отдых в календарь.","Желание своими словами":"«Хочу создать что-то своё и чаще чувствовать, что мне нравится моя жизнь».","Что делать":"Выбери идею, которую можно закончить в обозримый срок. Выдели время на процесс и способ показать результат. Отдельно оставь занятие, от которого не требуешь денег или похвалы.","Где можно застрять":"Ждать аплодисментов перед первым шагом, уходить в азарт или жить достижениями ребёнка вместо собственных интересов. Тема детей не равна обещанию беременности.","Вопрос к себе":"Чем я хотела бы заниматься, даже если никто не поставит за это оценку?"},"6":{"title":"Повседневность требует настройки","Фон года":"В центре внимания рабочий ритм, обязанности, прикладное мастерство, быт и забота о теле. Может стать очевидно, что прежний режим неудобен: слишком много мелких задач, нет ясных процессов, трудно восстановиться. Значимой становится способность организовать обычный день.","Как это бывает":"Меняются условия работы, появляется помощник, осваиваешь инструмент, пересматриваешь домашние обязанности. Возможны заботы о питомце или более системное внимание к собственному самочувствию.","Цели на выбор":"Сделать рабочий график посильным; освоить навык для текущих задач; передать часть рутины; наладить регулярную заботу о себе.","Желание своими словами":"«Хочу, чтобы повседневная жизнь работала на меня и оставляла силы после обязательных дел».","Что делать":"В течение недели отмечай повторяющиеся задачи. Одну убери, одну упрости, одну обсуди с тем, кто может помочь. Выдели время на отдых так же конкретно, как на работу.","Где можно застрять":"Считать себя незаменимой, бесконечно улучшать систему или заслуживать отдых переутомлением. Положение не позволяет диагностировать заболевания; реальные жалобы решаются с врачом.","Вопрос к себе":"Какая небольшая перемена в обычном дне даст мне самый ощутимый эффект?"},"7":{"title":"Год договорённостей","Фон года":"Люди и взаимодействие с ними занимают больше места. Значимыми становятся партнёрство, клиенты, сотрудничество, близкая дружба, публичная обратная связь. Личные планы приходится соотносить с желаниями и решениями другой стороны. Навык обсуждать условия особенно полезен.","Как это бывает":"Появляется новый партнёр по делу, больше консультаций или переговоров, меняются отношения в паре. Иногда на первый план выходит спор, в котором нужно прояснить позиции и найти рабочие условия.","Цели на выбор":"Договориться о взаимных обязательствах; построить удобный процесс работы с клиентами; проверить совместный проект; выделить время на отношения.","Желание своими словами":"«Хочу взаимных отношений, где мы понимаем друг друга и можем договариваться».","Что делать":"Перед совместным делом обсуди роли, ожидания и ограничения. Проверяй понимание конкретными примерами. Для значимых договоров используй подходящую профессиональную помощь.","Где можно застрять":"Отдавать другому человеку право решать за тебя или считать любое несогласие признаком несовместимости. Этот фон не требует срочно вступать в брак или завершать отношения.","Вопрос к себе":"О чём мы пока только догадываемся вместо того, чтобы договориться вслух?"},"8":{"title":"Общие ресурсы и перестройка","Фон года":"Важнее становятся ситуации, где ты зависишь от совместных решений: общий бюджет, обязательства, вложения, доверие и близость. Может понадобиться пересмотреть привычный способ справляться с неопределённостью. Это тема перехода и более глубокого разбора того, как устроена твоя жизнь.","Как это бывает":"Обсуждаете семейные деньги, распределяете ответственность в бизнесе, завершаете старое обязательство или исследуете повторяющийся личный сценарий. Перемены могут быть запланированными и постепенными.","Цели на выбор":"Прояснить совместные обязательства; собрать документы по общим ресурсам; обсудить границы доверия; получить поддержку в сложном переходе.","Желание своими словами":"«Хочу понятных договорённостей и больше способности действовать, когда не всё зависит от меня».","Что делать":"Раздели известные факты, опасения и вопросы, которые нужно уточнить. Назначь один разговор по общей ответственности. В финансовых и юридических вопросах опирайся на документы и профильных специалистов.","Где можно застрять":"Проверять себя риском, искать кризис ради перемен или пытаться контролировать чужие действия. Восьмой дом сам по себе не предсказывает катастрофу.","Вопрос к себе":"Какую зависимость или договорённость пора сделать более прозрачной?"},"9":{"title":"Расширение привычного мира","Фон года":"Внимание направляется к образованию, путешествиям, другим культурам, преподаванию и собственным убеждениям. Возникает желание понять больше и увидеть свою жизнь в более широком контексте. Может понадобиться новый ориентир или содержательная профессиональная перспектива.","Как это бывает":"Выбираешь длительное обучение, готовишь поездку, начинаешь преподавать, публикуешь материал, изучаешь язык. Важными становятся отношения с наставником или официальные процедуры, связанные с учёбой и международными делами.","Цели на выбор":"Получить нужную квалификацию; подготовить образовательный проект; организовать содержательное путешествие; сформулировать собственную профессиональную позицию.","Желание своими словами":"«Хочу выйти за пределы привычного и использовать новые знания в своей жизни».","Что делать":"Определи, какую возможность откроет обучение или поездка. Проверь условия участия и необходимые документы. Найди способ поделиться уже освоенным опытом.","Где можно застрять":"Искать учителя с ответами на всё, копить сертификаты или подменять опыт громкими убеждениями. Девятый дом не делает любое дорогое обучение полезным.","Вопрос к себе":"Какой новый опыт действительно изменит то, что я умею и понимаю?"},"10":{"title":"Профессиональное направление","Фон года":"На первый план выходят цели, ответственность, карьера, статус и отношения с авторитетами. Может стать важнее вопрос, какое место ты занимаешь и за какие решения отвечаешь. Появляется повод определиться с направлением и подтвердить компетентность делами.","Как это бывает":"Меняется роль на работе, берёшь руководство, развиваешь собственную практику, готовишь профессиональный переход. Иногда личные и семейные обязанности требуют пересобрать карьерные планы.","Цели на выбор":"Завершить значимый проект; подготовиться к новой роли; собрать подтверждения своей квалификации; определить границы профессиональной ответственности.","Желание своими словами":"«Хочу занять подходящее мне профессиональное место и видеть результат своих усилий».","Что делать":"Выбери одну главную рабочую цель и критерий её достижения. Раздели путь на этапы. Обсуди ожидания с теми, кто участвует в оценке или реализации результата.","Где можно застрять":"Согласиться на статус без полномочий, делать всё ради одобрения или считать постоянную занятость успехом. Повышение не следует автоматически из одной проекции.","Вопрос к себе":"Какую ответственность я готова принять и какой результат хочу за неё получить?"},"11":{"title":"Люди с общими идеями","Фон года":"Усиливается интерес к друзьям, сообществам, командам, аудитории и будущим планам. Может захотеться пробовать новое вместе с другими, расширить круг общения или найти среду, где твои идеи понятны. Важен баланс между принадлежностью и собственной свободой.","Как это бывает":"Вступаешь в профессиональное объединение, создаёшь небольшой клуб, участвуешь в коллективном проекте, меняешь формат общения с подписчиками. Старые планы могут пересматриваться под влиянием новых знакомств.","Цели на выбор":"Найти сообщество с живым участием; провести совместную инициативу; укрепить несколько дружеских связей; проверить новую идею на небольшой аудитории.","Желание своими словами":"«Хочу быть среди людей, с которыми можно общаться, придумывать и делать что-то вместе».","Что делать":"Выбери одну среду и участвуй в ней регулярно. Предложи конкретный вклад. Обсуди правила общей работы, чтобы энтузиазм не заменял распределение задач.","Где можно застрять":"Считать подписчиков друзьями, отдавать всё группе или начинать множество инициатив без продолжения. Количество контактов не равно качеству связей.","Вопрос к себе":"Где я могу быть собой и одновременно приносить пользу общему делу?"},"12":{"title":"Тихая внутренняя работа","Фон года":"Больше значения могут приобрести уединение, завершение старого этапа, скрытая подготовка, творчество и внутренние переживания. Иногда хочется снизить публичную активность и разобраться с тем, для чего раньше не было тишины. Это не обязательная остановка всей жизни: часть работы просто происходит без зрителей.","Как это бывает":"Пишешь материал до публикации, работаешь дистанционно, заботишься о близком, пересматриваешь нагрузку, исследуешь свои переживания. В некоторых обстоятельствах тема связана с жизнью вдали от привычного окружения.","Цели на выбор":"Завершить затянувшееся дело; подготовить проект без спешки; выделить время на восстановление; найти подходящий способ внутренней работы.","Желание своими словами":"«Хочу освободить место для себя и спокойно завершить то, что забирает мои силы».","Что делать":"Определи, что нуждается в тишине, а что — в помощи. Установи границы доступности и сохрани контакт с людьми, которым доверяешь. Для скрытого проекта назначь промежуточные результаты.","Где можно застрять":"Исчезнуть из всех связей, бесконечно готовиться или считать усталость духовной обязанностью. Уединение должно оставаться поддержкой, а не наказанием.","Вопрос к себе":"Что мне пора закончить и какую поддержку я могу принять?"}},"mc":{"1":{"title":"Личное изменение становится заметным","Возможный итог":"К концу периода можно увидеть изменения в своей самостоятельности, внешней подаче и способе действовать. Важное личное желание получает конкретную форму: ты начинаешь то, на что прежде не решалась, или занимаешь более заметное место. Итог оценивается по изменениям в собственной жизни, а не только по чужим отзывам.","Как это бывает":"Состоявшийся личный запуск, обновлённый образ, выход из зависимой роли, новый способ представлять себя. Изменение тела возможно, если ему посвящены реальные действия, но не предписывается картой.","Цели на выбор":"Довести личную инициативу до первого результата; научиться принимать определённый круг решений самостоятельно; собрать подходящую самопрезентацию.","Желание своими словами":"«Хочу завершить этот год с ощущением, что я могу действовать от своего имени».","Путь к результату":"Выбери ситуацию, где обычно ждёшь разрешения. Сделай доступный самостоятельный шаг. Раз в месяц фиксируй реальные решения, которые теперь принимаешь иначе.","Где можно застрять":"Менять себя ради впечатления, обещать полное преображение или связывать успех с восторгом окружающих. Поддержка людей полезна, но не заменяет твоё решение.","Как заметить итог":"Есть конкретное начинание или устойчивая перемена в поведении. Ты можешь назвать, что теперь делаешь сама и чего раньше избегала."},"2":{"title":"Материальный результат года","Возможный итог":"Изменения становятся видны в личных деньгах, имуществе, источниках заработка и способности обеспечивать себя. Это может быть накопленная сумма, нужная вещь, начало оплачиваемой работы или более понятная структура расходов. Направление изменения — рост или уменьшение ресурсов — одной проекцией не определяется.","Как это бывает":"Получаешь первые деньги за навык, завершаешь накопление на покупку, меняешь условия оплаты. Бывает и результат в виде отказа от затрат, которые перестали соответствовать твоим возможностям.","Цели на выбор":"Сформировать посильный резерв; выйти на выбранный уровень оплачиваемой загрузки; приобрести нужную вещь по подготовленному плану.","Желание своими словами":"«Хочу увидеть материальный результат своего труда и лучше распоряжаться тем, что у меня есть».","Путь к результату":"Запиши исходные цифры и желаемое изменение. Раздели поступления, обязательные расходы и средства на цель. Пересматривай план по фактическим результатам.","Где можно застрять":"Оценивать успех только оборотом, забывая затраты; требовать от себя определённой суммы без учёта условий. Соляр не является основанием для инвестиционных решений.","Как заметить итог":"Можно сравнить начало и конец периода по выбранному показателю: накоплениям, имуществу, оплачиваемой работе или структуре расходов."},"3":{"title":"Знания переходят в навык","Возможный итог":"Год может оставить результат в учёбе, коммуникации, документах, поездках или ближайшем окружении. То, что долго обсуждалось и готовилось, получает завершение: освоенный навык, опубликованный текст, оформленный документ, состоявшаяся поездка.","Как это бывает":"Заканчиваешь курс и используешь знания, начинаешь преподавать освоенное, выпускаешь серию материалов, меняешь привычную сеть контактов. Важное событие у брата или сестры может стать частью контекста, но не твоей управляемой целью.","Цели на выбор":"Подтвердить прикладной навык готовой работой; довести документальную задачу до завершения; наладить устойчивый канал общения или публикаций.","Желание своими словами":"«Хочу к концу года уметь и делать то, что сейчас только изучаю».","Путь к результату":"Сразу определи продукт обучения: текст, разговор на языке, выполненную работу. Для документов собери список этапов и ответственных. Для поездки зафиксируй её цель.","Где можно застрять":"Принять количество просмотренных уроков за результат, обещать всем быть на связи или оставить организационные вопросы на последний момент.","Как заметить итог":"Есть проверяемое завершение: навык применяется, материал опубликован, документ получен или нужная поездка состоялась."},"4":{"title":"Устроенная домашняя жизнь","Возможный итог":"Важным результатом может стать изменение места проживания, семейного уклада или ощущения собственной опоры. Иногда завершается рабочий этап, чтобы появилась возможность иначе устроить домашнюю жизнь. Итог не обязан быть масштабным: удобное пространство и ясные бытовые договорённости тоже существенны.","Как это бывает":"Заканчиваешь ремонт, переезжаешь, организуешь рабочее место дома, договариваешься с родственниками о помощи. В семейной системе появляется новый уклад, к которому нужно привыкнуть.","Цели на выбор":"Довести обустройство до пригодного для жизни состояния; подготовить и реализовать жилищный план; закрепить распределение домашних обязанностей.","Желание своими словами":"«Хочу завершить год с домом и укладом, которые подходят моей реальной жизни».","Путь к результату":"Опиши, каким должно стать пространство или расписание. Раздели обязательное и желательное. Обсуди изменения со всеми, чья повседневность затронута.","Где можно застрять":"Гнаться за идеальной картинкой дома, считать хорошую семью отсутствием разногласий или пытаться полностью управлять чувствами родственников.","Как заметить итог":"Изменились конкретные условия проживания или взаимодействия. Стало понятно, где твоя зона ответственности и что помогает чувствовать себя дома."},"5":{"title":"Личный творческий результат","Возможный итог":"Результат может оформиться в творческой работе, собственном проекте, увлечении, романтической жизни или теме детей. Важен личный смысл: появляется то, что ты хотела создавать и чему рада уделять внимание. Внешнее признание возможно, но не единственный критерий.","Как это бывает":"Показываешь готовый проект, участвуешь в выступлении, закрепляешь любимое занятие в жизни, проводишь запланированный отпуск. В делах ребёнка заканчивается важный этап. Родительство рассматривается только с учётом желания и реальных обстоятельств.","Цели на выбор":"Завершить авторскую работу; подготовить выступление или участие в соревновании; создать семейную традицию досуга; дать увлечению постоянное место.","Желание своими словами":"«Хочу, чтобы после этого года осталось что-то созданное мной с интересом и любовью».","Путь к результату":"Определи конечную форму: готовая работа, мероприятие, регулярное занятие. Назначь посильный срок. Если результат касается ребёнка, учитывай его собственные интересы.","Где можно застрять":"Сравнивать творчество с чужим успехом, превращать отдых в экзамен или требовать достижений от близких ради своей гордости.","Как заметить итог":"Есть завершённая работа или устойчивое место для радости. Ты можешь назвать, что стало живой частью твоей жизни."},"6":{"title":"Повседневность стала другой","Возможный итог":"Изменения проявляются в работе, режиме, бытовых привычках, распределении обязанностей и заботе о себе. Возможен переход на другую работу или в иные условия занятости. Результат часто выглядит практично: меньше хаоса, понятнее нагрузка, лучше организованы повторяющиеся дела.","Как это бывает":"Осваиваешь рабочий процесс, получаешь помощь, меняешь график, привыкаешь к заботе о питомце. Если были реальные вопросы самочувствия, значимым итогом может стать организованное наблюдение и выполнение согласованного с врачом плана.","Цели на выбор":"Закрепить удобный рабочий ритм; передать часть задач; освоить инструмент; создать понятную систему бытовых дел.","Желание своими словами":"«Хочу, чтобы моя обычная неделя стала удобнее и не требовала постоянного героизма».","Путь к результату":"Выбери один процесс, который повторяется чаще всего. Измени его и проверь в течение месяца. Оцени затраты времени и доступность восстановления.","Где можно застрять":"Считать нормой бесконечное обслуживание других, требовать идеального режима или воспринимать дом как обещание болезни.","Как заметить итог":"Новый порядок действительно работает несколько недель подряд, а обязанности и помощь распределены понятнее, чем в начале года."},"7":{"title":"Отношения получают определённость","Возможный итог":"Результат года может быть связан с новым партнёрством, оформлением договорённостей или прояснением уже существующих отношений. Там, где раньше была неопределённость, появляется решение о формате дальнейшего взаимодействия. Оно зависит от обеих сторон.","Как это бывает":"Начинается совместная работа, заключаете договор, определяетесь с совместной жизнью, меняете условия сотрудничества. Иногда завершение исчерпанной связи становится итогом, но не обязательной трактовкой положения.","Цели на выбор":"Оформить понятные условия партнёрства; выстроить устойчивую работу с клиентами; провести важный разговор о будущем отношений.","Желание своими словами":"«Хочу ясных взаимных договорённостей и отношений, в которых учитывают обоих».","Путь к результату":"Назови свои ожидания и узнай ожидания другого. Зафиксируй договорённости в подходящей форме. Проверь, совпадают ли слова с поступками на протяжении времени.","Где можно застрять":"Считать брак или контракт обязательным доказательством успешного года, давить на чужое решение или сохранять неудобный союз только ради статуса.","Как заметить итог":"Есть согласованный формат отношений, понятные обязательства и реальные действия. Твоя часть цели выполнена, даже если другой человек сделал иной выбор."},"8":{"title":"Новые условия общей ответственности","Возможный итог":"Год может привести к пересмотру общих финансов, обязательств, зависимости и доверия. Существенный переход заканчивается новыми условиями: ты лучше понимаешь, за что отвечаешь, чем располагаешь вместе с другими и какую нагрузку готова нести.","Как это бывает":"Завершается обсуждение общего бюджета, меняются условия делового участия, решается вопрос имущественных обязательств. Внутренним результатом может стать более ясное отношение к уязвимости и необходимости помощи.","Цели на выбор":"Упорядочить документы и обязательства; согласовать вклад участников общего дела; завершить затянувшийся переход с поддержкой; обозначить границы финансовой ответственности.","Желание своими словами":"«Хочу выйти из неопределённости с понятными условиями и большей опорой на факты».","Путь к результату":"Определи, какая договорённость требует решения. Собери информацию и получи профильную консультацию, если вопрос сложный. Планируй только действия, которые доступны тебе.","Где можно застрять":"Называть любой кризис необходимым, брать новые риски ради соответствия прогнозу или обвинять себя в событиях, которые от тебя не зависели.","Как заметить итог":"Изменились реальные условия общей ответственности. Понятны обязательства, ограничения и следующий шаг. Травмы, потери и катастрофы не являются «целью» этого положения."},"9":{"title":"Расширение возможностей стало реальным","Возможный итог":"Результат может появиться через образование, преподавание, публикацию, международные контакты или дальнюю поездку. Ты выходишь из года с новым опытом, подтверждённой квалификацией или более широким пространством выбора.","Как это бывает":"Завершаешь учебную программу, защищаешь работу, проводишь собственный курс, реализуешь поездку, налаживаешь контакт с людьми из другой страны. Перемены во взглядах становятся заметны по решениям, которые теперь принимаешь.","Цели на выбор":"Получить нужную квалификацию; подготовить образовательный материал; довести проект с внешними партнёрами до результата; осуществить заранее спланированную поездку.","Желание своими словами":"«Хочу получить опыт, который откроет мне новые возможности и останется со мной надолго».","Путь к результату":"Проверь требования и критерии завершения. Раздели подготовку на этапы. Продумай, как используешь знания или контакты после окончания проекта.","Где можно застрять":"Считать диплом самоцелью, идеализировать другую страну или ждать, что смена места автоматически решит внутренние трудности.","Как заметить итог":"Новый опыт можно описать конкретно: что завершено, чему научилась, какие действия теперь доступны и как они связаны с твоими планами."},"10":{"title":"Профессиональный результат виден","Возможный итог":"Ключевой результат может отразиться в карьере, должности, репутации, ответственности и социальном положении. Важен переход от намерения к подтверждённой роли: за что тебя знают, что тебе доверяют, какие задачи ты умеешь завершать.","Как это бывает":"Получаешь новую роль, доводишь до конца заметный проект, укрепляешь частную практику, меняешь профессиональное направление. Семейные события тоже могут влиять на статус, но конкретный исход не выводится из одной проекции.","Цели на выбор":"Закрепиться в выбранной специализации; закончить значимый рабочий проект; подготовить переход к новой роли; собрать портфолио результатов.","Желание своими словами":"«Хочу, чтобы мой профессиональный рост был виден в делах, условиях работы и ответственности».","Путь к результату":"Выбери критерий успеха до начала работы. Узнай требования к желаемой роли. Сохраняй подтверждения выполненных задач и обсуждай результат с заинтересованными сторонами.","Где можно застрять":"Работать только ради признания, брать чужие обязанности без полномочий или считать любое повышение улучшением жизни.","Как заметить итог":"Есть завершённое достижение или подтверждённое изменение роли. Понятно, что стало доступно и какую ответственность ты теперь несёшь."},"11":{"title":"Сформировался свой круг","Возможный итог":"Результат может выражаться в появлении сообщества, команды, устойчивых дружеских связей или новых совместных перспектив. Важным становится то, что удалось сделать вместе и какие отношения продолжатся после конкретной задачи.","Как это бывает":"Собирается клуб, заканчивается коллективный проект, появляются единомышленники, развивается аудитория. Знакомство может помочь профессиональному продвижению, но ценность связи шире её полезности.","Цели на выбор":"Создать работающий формат сообщества; провести совместную инициативу; укрепить несколько взаимных связей; получить содержательную обратную связь от аудитории.","Желание своими словами":"«Хочу закончить год с людьми, с которыми есть взаимный интерес и общие дела».","Путь к результату":"Определи, что объединяет участников и как часто вы взаимодействуете. Распредели вклад. Договорись, как будете поддерживать связь после завершения проекта.","Где можно застрять":"Гнаться за цифрами подписчиков, ждать поддержки без собственного участия или строить всё на одном человеке. Не каждый приятный контакт становится дружбой.","Как заметить итог":"Есть повторяющееся живое взаимодействие, совместный результат и понятные дальнейшие планы. Качество участия заметнее простого количества людей."},"12":{"title":"Завершение и освобождение места","Возможный итог":"Год может завершать определённый рабочий или личный этап, менять публичную нагрузку, освобождать время для восстановления и внутренней работы. Иногда результатом становится подготовленный в тишине материал. Его ценность может быть пока мало заметна окружающим.","Как это бывает":"Заканчиваешь старый проект, сокращаешь обязательства, переходишь к работе за кадром, готовишь следующий этап. Жизнь вдали от привычного окружения возможна при соответствующих обстоятельствах, но не обязательна.","Цели на выбор":"Завершить конкретное затянувшееся дело; подготовить материал до готовности к показу; выстроить посильную нагрузку; сохранить поддерживающие контакты при смене уклада.","Желание своими словами":"«Хочу освободиться от лишнего и войти в следующий этап с большей ясностью и силами».","Путь к результату":"Определи, что именно заканчивается и какие обязательства остаются. Назначь критерий завершения. Если берёшь паузу, продумай её условия и дату пересмотра планов.","Где можно застрять":"Исчезнуть без договорённостей, затянуть подготовку на неопределённый срок или принять трудности за обязательное содержание года. Увольнение и болезнь не предписаны этим домом.","Как заметить итог":"Есть завершённый этап, уменьшившаяся ненужная нагрузка или подготовленная работа. Ты понимаешь, что оставляешь позади и что берёшь дальше."}},"sun":{"1":{"title":"Инициатива и личное начало","Ключевая тема":"В рамках солярной интерпретации Солнце в первом доме выделяет твою личность, инициативу и способность действовать самостоятельно. Важнее становится собственное участие: предложить, начать, показать себя. Год удобно рассматривать через вопрос, какое личное направление ты хочешь развивать.","Как это бывает":"Старт самостоятельной деятельности, смена самоподачи, более активная публичная роль, внимание к телу и образу жизни. Важные события могут требовать твоего решения, а не только приспособления к обстоятельствам.","Цели на выбор":"Начать один личный проект; научиться представлять себя и свою работу; развить самостоятельность в конкретной сфере.","Желание своими словами":"«Хочу смелее начинать и видеть, на что способна, когда действую сама».","Куда направить усилия":"Выбери начинание, которое действительно твоё. Сделай первую версию и покажи её тем, для кого она предназначена. Обновляй подачу вслед за реальным опытом.","Где можно застрять":"Зацикливаться на впечатлении, ждать идеальной формы или брать всё на себя. Самостоятельность допускает сотрудничество и помощь.","Как проверять движение":"За месяц появился конкретный шаг, сделанный по твоей инициативе. Ты яснее понимаешь свои желания и можешь назвать, как они отражаются в решениях."},"2":{"title":"Заработок и материальная опора","Ключевая тема":"Солнце выделяет личные деньги, расходы, имущество и применение способностей. Важно понять, как усилия превращаются в материальный результат и устраивает ли тебя эта связь. Акцент касается и поступлений, и затрат: большое движение денег само по себе ещё не означает рост благосостояния.","Как это бывает":"Изменение оплаты, работа над новым источником дохода, накопления, крупная покупка, пересмотр привычных расходов. Может стать особенно заметно, какие навыки востребованы и сколько сил стоит их применение.","Цели на выбор":"Улучшить оплату подходящей работы; развить навык под реальную задачу; подготовить покупку; сделать личные финансы понятнее.","Желание своими словами":"«Хочу получать ощутимый результат от своих способностей и увереннее обеспечивать себя».","Куда направить усилия":"Выбери одну материальную задачу. Оцени исходную ситуацию, затраты времени и способы проверить спрос на свою работу. Сравнивай планы с реальными поступлениями.","Где можно застрять":"Ждать денег только потому, что активен второй дом; покупать символ успеха вместо решения потребности; связывать самооценку с отдельной продажей.","Как проверять движение":"Ты видишь, какие действия дают результат, что расходуется и что остаётся. Изменения можно описать цифрами или конкретным приобретённым ресурсом."},"3":{"title":"Общение и освоение навыков","Ключевая тема":"Энергия направляется в обучение, тексты, речь, контакты, документы и перемещения. Важно активно обмениваться информацией и превращать её в доступный инструмент. Иногда год занят организацией множества небольших дел, из которых складывается значимое продвижение.","Как это бывает":"Курс под рабочую задачу, ведение блога, переговоры, подготовка документов, частые поездки. Может активизироваться взаимодействие с братьями, сёстрами или ближайшим окружением.","Цели на выбор":"Научиться конкретному действию; выпустить серию полезных материалов; завершить оформление документов; организовать рабочую коммуникацию.","Желание своими словами":"«Хочу ясно говорить о важном, учиться с пользой и легче решать организационные задачи».","Куда направить усилия":"Для каждой новой темы назначай применение. После обучения сделай работу самостоятельно. В общении формулируй цель разговора и проверяй, одинаково ли поняты договорённости.","Где можно застрять":"Распылиться между курсами и переписками, постоянно обсуждать идею вместо её реализации или путать доступность с обязанностью отвечать немедленно.","Как проверять движение":"Есть тексты, завершённые вопросы или навык, который стал частью практики. Количество полученной информации перестаёт быть главным мерилом успеха."},"4":{"title":"Основание жизни","Ключевая тема":"Солнце выделяет дом, семью, недвижимость, отношения с родными и собственное чувство опоры. Существенная часть усилий может уходить на то, как устроена жизнь изнутри. Это подходящая тема для осознанного выбора уклада, а не только выполнения семейных ожиданий.","Как это бывает":"Обустройство жилья, жилищное решение, пересмотр домашних ролей, работа из дома, завершение семейного или имущественного вопроса. Иногда внимание направлено на историю семьи и собственное место в ней.","Цели на выбор":"Сделать жильё функциональным; договориться о домашних обязанностях; подготовить переезд при реальной необходимости; создать подходящий семейный ритм.","Желание своими словами":"«Хочу устроить свою жизнь так, чтобы дома были место для меня и понятные правила».","Куда направить усилия":"Выбери один основной вопрос дома. Уточни желания участников, бюджет и ограничения. Раздели то, что ты можешь сделать сама, и то, для чего нужна договорённость.","Где можно застрять":"Раствориться в заботах, стремиться исправить всю семейную историю или откладывать собственные дела до полного благополучия всех родственников.","Как проверять движение":"Меняются конкретные условия быта и общения. Появляется больше ясности, удобства и возможности жить в своём ритме."},"5":{"title":"Создание и самовыражение","Ключевая тема":"Солнце выделяет творческую инициативу, собственные проекты, удовольствие, детей и романтическую жизнь. Важно делать то, к чему есть личный интерес, и давать этому форму. Здесь можно учиться показывать результат, пробовать себя на публике и получать удовольствие от участия.","Как это бывает":"Авторская работа, выступление, новое хобби, спортивная цель, совместные занятия с ребёнком, более насыщенный досуг. Собственное дело может вырасти из увлечения, если есть спрос и подходящие условия.","Цели на выбор":"Закончить творческий проект; подготовить публичный показ; вернуть регулярный досуг; уделять ребёнку внимание с учётом его интересов.","Желание своими словами":"«Хочу создавать то, что мне нравится, и позволить другим это увидеть».","Куда направить усилия":"Выбери один замысел и его конечную форму. Отведи время на практику. Определи небольшую аудиторию, перед которой можно впервые показать работу.","Где можно застрять":"Ждать вдохновения каждый день, воспринимать критику как оценку всей личности или требовать прибыли от каждого удовольствия. Активный пятый дом не гарантирует зачатия.","Как проверять движение":"Ты что-то создаёшь, показываешь или регулярно делаешь для радости. Есть опыт участия, а не только мечта о признании."},"6":{"title":"Мастерство в ежедневной работе","Ключевая тема":"Солнце направляет внимание на рабочие процессы, обязанности, практические навыки, режим и заботу о себе. Важным становится качество регулярных действий. Рост может идти через освоение ремесла, улучшение условий труда и более разумную организацию нагрузки.","Как это бывает":"Новая работа или задачи, обучение инструменту, появление помощника, изменение графика, забота о питомце. Может потребоваться больше внимания к повседневным потребностям тела.","Цели на выбор":"Освоить рабочий навык до уверенного применения; упростить повторяющийся процесс; распределить обязанности; поддерживать посильный режим труда и отдыха.","Желание своими словами":"«Хочу стать увереннее в своём деле и работать так, чтобы оставались силы на жизнь».","Куда направить усилия":"Выбери один навык и практикуй его на реальных задачах. Записывай, что повторяется и может быть упрощено. Договорись о помощи там, где она нужна.","Где можно застрять":"Заменить профессионализм переработками, терпеть неудобные условия или доводить каждую мелочь до идеала. Работа над режимом не даёт гарантии здоровья.","Как проверять движение":"Рабочие задачи выполняются увереннее, процесс понятнее, а нагрузку можно поддерживать без постоянного надрыва."},"7":{"title":"Взаимодействие с людьми","Ключевая тема":"Солнце выделяет отношения, клиентов, партнёрские договорённости и публичное взаимодействие. Значимые задачи решаются через контакт с другой стороной. Важно слышать, договариваться, показывать свою позицию и понимать, что именно ты предлагаешь людям.","Как это бывает":"Консультационная практика, совместный проект, переговоры, новый формат отношений, общественная деятельность. Внимание к чужим реакциям может помочь уточнить подачу и условия сотрудничества.","Цели на выбор":"Развить работу с клиентами; подготовить взаимовыгодное сотрудничество; прояснить ожидания в паре; освоить переговорный навык.","Желание своими словами":"«Хочу выстраивать отношения, в которых мой вклад понятен и есть взаимность».","Куда направить усилия":"Чётко опиши предложение и условия. Спрашивай о потребностях другой стороны. Регулярно сверяй договорённости с тем, как взаимодействие складывается на практике.","Где можно застрять":"Подстраиваться ради принятия, спорить ради победы или ждать, что партнёр решит твои личные задачи. Семейный статус не является единственным возможным итогом.","Как проверять движение":"Становится понятнее, с кем и на каких условиях ты взаимодействуешь. Есть реальные совместные действия, а не только ожидания друг от друга."},"8":{"title":"Общие деньги и существенные перемены","Ключевая тема":"Внимание направляется к совместным ресурсам, обязательствам, доверию, интимности и изменениям привычного уклада. Может понадобиться разобраться в сложной теме, которую раньше удавалось обходить. Важен навык обсуждать зависимость и принимать решения с учётом последствий.","Как это бывает":"Перестраивается общий бюджет, меняются условия участия в деле, решается вопрос документов или долей, начинается глубокая работа над повторяющимся сценарием. Смена старых привычек может быть постепенной.","Цели на выбор":"Прояснить общие финансовые условия; привести документы в порядок; обсудить границы близости и доверия; подготовить переход от прежней модели жизни к новой.","Желание своими словами":"«Хочу разобраться в сложном и принимать решения, за которые готова отвечать».","Куда направить усилия":"Собери факты и назови вопрос, который нужно решить. Отдели свою ответственность от чужой. Используй профильную помощь, если нужны специальные знания.","Где можно застрять":"Брать кредит, идти на медицинское вмешательство или провоцировать конфликт ради «проработки» дома. Ни одно из этих действий не требуется картой.","Как проверять движение":"Больше ясности в обязательствах и отношениях, меньше неоговорённого. Перемены имеют понятную цель и реальные основания."},"9":{"title":"Образование и собственная позиция","Ключевая тема":"Солнце выделяет развитие мировоззрения, серьёзное обучение, преподавание, дальние поездки и расширение профессионального горизонта. Важно не только получать знания, но и формировать собственное понимание: что ты считаешь верным и на какой опыт опираешься.","Как это бывает":"Длительная программа, подготовка курса, выступление с экспертным материалом, путешествие с содержательной целью, международный проект. Может появиться желание работать с более широким кругом людей.","Цели на выбор":"Получить нужную квалификацию; подготовить обучение для других; изучить язык под задачу; организовать поездку или публикацию, связанную с интересующей темой.","Желание своими словами":"«Хочу вырасти в понимании своего дела и уверенно делиться тем, что действительно знаю».","Куда направить усилия":"Выбери направление развития, которое связано с реальной задачей. Проверь качество программы. Для преподавания определи границы своей компетенции и подготовь понятные примеры.","Где можно застрять":"Считать авторитет непогрешимым, говорить увереннее, чем позволяют знания, или стремиться к масштабу без подготовленной основы.","Как проверять движение":"Новое знание изменяет практику. Ты можешь объяснить свою позицию и показать, на чём она основана."},"10":{"title":"Цель и профессиональное признание","Ключевая тема":"Солнце направляет внимание на карьеру, статус, ответственность и достижение значимой цели. Важно определить, к какому результату ты идёшь и какой вклад готова внести. Год можно использовать для подтверждения компетентности и более ясного профессионального выбора.","Как это бывает":"Рост ответственности, переход на новую роль, завершение важного проекта, развитие собственной практики. Иногда меняются представления о том, какой успех тебе действительно нужен.","Цели на выбор":"Довести рабочую цель до завершения; подготовиться к руководящей роли; укрепить репутацию в конкретной теме; пересмотреть направление карьеры по реальным критериям.","Желание своими словами":"«Хочу добиваться значимых для меня результатов и занимать подходящее профессиональное место».","Куда направить усилия":"Определи один приоритет и измеримый результат. Выдели этапы, необходимые навыки и поддержку. Обсуждай условия ответственности до того, как согласишься на неё.","Где можно застрять":"Подменить цель статусом, считать отдых помехой или брать повышение, которое ухудшает жизнь. Регистрация бизнеса нужна по фактическим обстоятельствам, а не ради соляра.","Как проверять движение":"Работа приближает к выбранной роли или завершённому результату. Ты понимаешь цену этого продвижения и согласна с ней."},"11":{"title":"Будущее через общие дела","Ключевая тема":"Солнце выделяет сообщества, дружбу, команды, аудиторию и планы. Личные идеи получают развитие во взаимодействии с людьми, которым интересно похожее. Значимыми становятся совместный вклад и возможность увидеть свой замысел в более широком контексте.","Как это бывает":"Организация клуба, участие в профессиональной среде, коллективный проект, развитие блога или общественной инициативы. Новые знакомства помогают пересмотреть перспективы, но требуют отбора и участия.","Цели на выбор":"Запустить посильный совместный формат; найти профессиональный круг; развить содержательное общение с аудиторией; проверить новую идею вместе с единомышленниками.","Желание своими словами":"«Хочу развивать важную идею вместе с людьми, которым она тоже нужна».","Куда направить усилия":"Сформулируй общую задачу и свой вклад. Начни с небольшой группы или пробного события. Договорись о продолжении, если опыт окажется полезным.","Где можно застрять":"Разбрасываться планами, зависеть от одобрения группы, измерять успех только охватами или обещать больше, чем позволяет ресурс.","Как проверять движение":"Есть повторяющееся участие, обратная связь и совместные результаты. Планы становятся конкретнее, а круг общения — содержательнее."},"12":{"title":"Подготовка и завершение","Ключевая тема":"Солнце выделяет внутреннюю жизнь, уединённую работу, творчество, завершение и процессы за кадром. Энергия может уходить на важное, что ещё не имеет публичной формы. Полезно определить, что требует защиты от лишнего шума и какой этап пора закончить.","Как это бывает":"Подготовка книги или курса, исследование, работа дистанционно, добровольная помощь, снижение публичной нагрузки. Иногда меняется среда проживания и нужен период адаптации.","Цели на выбор":"Завершить старое дело; подготовить материал до рабочей версии; выстроить границы доступности; выделить регулярное время на восстановление и творчество.","Желание своими словами":"«Хочу спокойно сделать важную внутреннюю работу и освободить место для следующего этапа».","Куда направить усилия":"Определи скрытый, но конкретный результат. Разбей подготовку на небольшие этапы. Сохрани человека или среду, где можно получить поддержку и обратную связь.","Где можно застрять":"Откладывать жизнь до полной готовности, исчезать из контактов или оправдывать бездействие тайным замыслом. Двенадцатый дом не запрещает карьеру и публичность.","Как проверять движение":"Есть законченные фрагменты работы, завершённые обязательства или более устойчивый режим. Тишина помогает жить, а не отдаляет от жизни."}},"moon":{"1":{"title":"Чувствительность к себе","Эмоциональная тема":"Внимание может чаще возвращаться к собственному состоянию, внешности, телесному комфорту и тому, как тебя воспринимают. Возрастает потребность учитывать себя, получать заботу и иметь право на разные чувства. Это не делает человека обязательно капризным: чувствительность можно использовать для более точного понимания своих потребностей.","Что может радовать и волновать":"Радуют внимание, поддержка и ощущение, что тебе подходит собственный образ. Волновать могут изменения внешности, чужая оценка и необходимость проявляться в непривычной роли.","Цели на выбор":"Научиться раньше замечать усталость и дискомфорт; прямо просить о конкретной поддержке; выбрать удобный способ самоподачи.","Желание своими словами":"«Хочу лучше слышать себя и учитывать своё состояние в ежедневных решениях».","Как себя поддержать":"Замечай, что предшествует смене настроения: перегрузка, неприятный разговор, нехватка отдыха. Отделяй телесную потребность от оценки себя. Сначала помоги себе в доступном, затем принимай важное решение.","Где можно застрять":"Считать каждое чувство указанием немедленно менять жизнь, проверять внешность чужими реакциями или ждать, что близкие догадаются о потребностях.","Вопрос к себе":"Что я сейчас чувствую и какая конкретная забота мне нужна?"},"2":{"title":"Спокойствие связано с ресурсами","Эмоциональная тема":"Деньги, покупки, собственные вещи и возможность обеспечить потребности становятся особенно значимыми. Может хотеться запаса и подтверждения, что ты справишься. Луна описывает вовлечённость в тему, но не задаёт обязательных потерь или колебаний дохода.","Что может радовать и волновать":"Радуют оплаченная работа, накопления и полезные приобретения. Беспокойство может вызывать неопределённость поступлений, непонятные расходы или сравнение своего достатка с чужим.","Цели на выбор":"Сделать личные расходы понятными; определить достаточный для себя уровень повседневного комфорта; отделять оценку своей ценности от текущего заработка.","Желание своими словами":"«Хочу чувствовать больше устойчивости и спокойно заботиться о своих материальных потребностях».","Как себя поддержать":"При тревоге проверяй цифры: что уже есть, что предстоит оплатить, что пока неизвестно. Для необязательной покупки оставляй время на решение. Отмечай навыки и поддержку, которыми располагаешь помимо денег.","Где можно застрять":"Успокаивать себя покупками, запрещать любые траты или бесконечно проверять баланс. Финансовая тревога не доказывает, что ситуация действительно ухудшается.","Вопрос к себе":"Какой факт поможет мне понять положение точнее, чем сегодняшнее настроение?"},"3":{"title":"Много мыслей и впечатлений","Эмоциональная тема":"Чувства могут сильнее включаться в общение, учёбу, поездки и дела ближайшего окружения. Важнее становится качество информационной среды: какие разговоры поддерживают, а какие перегружают. Иногда хочется проговорить переживание, чтобы самому понять его смысл.","Что может радовать и волновать":"Радуют интересные занятия, близкий разговор, небольшая поездка и новые знания. Волновать могут сообщения без ответа, учебные проверки, дорога или дела братьев и сестёр.","Цели на выбор":"Найти комфортный ритм общения; освоить значимый навык без перегрузки; научиться уточнять непонятное; сократить лишний информационный шум.","Желание своими словами":"«Хочу общаться с интересом и ясностью, не теряя себя в чужих сообщениях».","Как себя поддержать":"Разделяй факты и свои предположения о чужом тоне. Уточняй смысл напрямую. Делай паузы между потоками информации и оставляй запас времени на организацию поездок.","Где можно застрять":"Перечитывать переписку в поисках скрытого смысла, учиться ради успокоения или пытаться знать всё. Положение Луны не означает неизбежных проблем в дороге.","Вопрос к себе":"Мне сейчас нужна новая информация, ясный разговор или пауза от общения?"},"4":{"title":"Потребность в доме и близости","Эмоциональная тема":"Особенно значимыми могут стать семейная атмосфера, место проживания, отношения с родными и чувство защищённости. Хочется иметь пространство, где можно расслабиться. Переживания о доме могут быть связаны как с приятными переменами, так и с бытовой неопределённостью.","Что может радовать и волновать":"Радуют уют, совместное время, поддержка близких. Волновать могут переезд, ремонт, родительские ожидания и вопросы заботы о семье. Реальные события определяются жизнью и всей картой, а не одной Луной.","Цели на выбор":"Создать дома место для восстановления; обсудить распределение забот; поддерживать желанные семейные связи; обозначить границы вмешательства.","Желание своими словами":"«Хочу чувствовать себя дома спокойно и иметь право на собственный уклад».","Как себя поддержать":"Отделяй сочувствие родственнику от обязанности решать всё за него. Обсуждай конкретную помощь и её пределы. Сохраняй простые привычные действия, которые дают ощущение дома во время перемен.","Где можно застрять":"Брать ответственность за настроение семьи, возвращаться к старым обидам без нового разговора или считать несогласие близкого отказом в любви.","Вопрос к себе":"Какая домашняя потребность сейчас моя, а какая принадлежит другому человеку?"},"5":{"title":"Радость становится важной","Эмоциональная тема":"Чувства сильнее включаются в творчество, романтику, детей, увлечения и собственные начинания. Хочется радоваться, получать живой отклик и вкладываться во что-то дорогое. Уязвимость может возникать именно там, где результат очень личный.","Что может радовать и волновать":"Радуют совместный отдых, вдохновение, выступление, тёплая романтическая связь. Волновать могут судьба проекта, реакция аудитории и переживания ребёнка. Интерес к теме детей не равен предсказанию беременности.","Цели на выбор":"Вернуть регулярный досуг; научиться показывать несовершенную работу; проводить качественное время с ребёнком; говорить о потребности в романтике.","Желание своими словами":"«Хочу чаще радоваться жизни и не обесценивать то, что мне по-настоящему нравится».","Как себя поддержать":"Отделяй оценку работы от оценки личности. Дай увлечению место без требования пользы. В делах ребёнка спрашивай, какая поддержка нужна ему, вместо того чтобы решать за него.","Где можно застрять":"Жить ожиданием похвалы, путать эмоциональный подъём с устойчивой связью или запрещать себе отдых до выполнения всех задач.","Вопрос к себе":"Что даёт мне радость от самого процесса, а не только от результата?"},"6":{"title":"Состояние зависит от обычного дня","Эмоциональная тема":"Рабочая атмосфера, обязанности, режим и самочувствие могут сильнее влиять на настроение. Возрастает потребность в понятном порядке и посильной нагрузке. Забота о других, коллегах или питомцах тоже может занимать много эмоционального пространства.","Что может радовать и волновать":"Радуют спокойный ритм, помощь, освоенное дело. Волновать могут завалы, изменения на работе, состояние тела и необходимость ухода за кем-то. По Луне нельзя определить конкретную болезнь.","Цели на выбор":"Наладить удобный режим; вовремя замечать перегрузку; договориться о помощи; сделать условия ежедневной работы комфортнее.","Желание своими словами":"«Хочу жить в ритме, который поддерживает меня и позволяет справляться с обязанностями».","Как себя поддержать":"Смотри на неделю целиком, включая дорогу и быт. После напряжённых задач оставляй время без новых требований. При реальных жалобах обращайся к врачу, не пытаясь объяснить их картой.","Где можно застрять":"Постоянно искать неисправность в себе, заслуживать заботу полезностью или становиться единственным человеком, который обслуживает всех остальных.","Вопрос к себе":"Какая часть моей нагрузки требует помощи, а какая вообще может быть убрана?"},"7":{"title":"Важна взаимность","Эмоциональная тема":"Отношения с партнёром, близким другом, клиентами или деловым союзником могут занимать больше мыслей. Возрастает чувствительность к отклику: слышат ли тебя, учитывают ли, можно ли рассчитывать на другого? Потребность в близости особенно важно выражать словами.","Что может радовать и волновать":"Радуют забота, ясные договорённости, совместные планы. Волновать могут дистанция, молчание, неопределённый статус отношений или реакция клиента на твою работу.","Цели на выбор":"Научиться говорить о своих ожиданиях; договориться о регулярном времени вдвоём; обозначить рабочие границы; укрепить взаимную поддержку.","Желание своими словами":"«Хочу близости и сотрудничества, где я могу быть честной и слышать другого».","Как себя поддержать":"Проверяй догадки прямым вопросом. Различай временную занятость человека и устойчивое отсутствие взаимности. Сохраняй собственные интересы и несколько источников поддержки.","Где можно застрять":"Делать чужое настроение мерилом своей ценности, соглашаться из страха потерять связь или ждать постоянного подтверждения любви.","Вопрос к себе":"Что мне нужно обсудить прямо, вместо того чтобы проверять отношения догадками?"},"8":{"title":"Чувства вокруг доверия и перемен","Эмоциональная тема":"Могут сильнее затрагивать вопросы общих денег, обязательств, интимности, уязвимости и утраты привычного контроля. Хочется понимать, на что можно опереться в меняющейся ситуации. Важна возможность проживать сложные чувства с поддержкой, без требования немедленно стать сильнее.","Что может радовать и волновать":"Облегчение дают честный разговор, ясные условия и надёжная помощь. Волновать могут неоговорённые обязательства, финансовая зависимость, смена уклада или необходимость довериться.","Цели на выбор":"Прояснить общую ответственность; научиться говорить о границах близости; получить поддержку в сложной ситуации; различать реальные риски и тревожные предположения.","Желание своими словами":"«Хочу чувствовать больше опоры даже тогда, когда не могу контролировать всё».","Как себя поддержать":"Назови, что именно неизвестно. Получи информацию у компетентного человека. Не принимай необратимые решения на пике переживания; оставь время на обсуждение и проверку фактов.","Где можно застрять":"Проверять доверие контролем, избегать любых перемен или считать сильные эмоции доказательством надвигающейся беды. Восьмой дом не определяет исход беременности или здоровье.","Вопрос к себе":"Что я могу прояснить, о чём договориться и в чём мне нужна помощь?"},"9":{"title":"Хочется смысла и горизонта","Эмоциональная тема":"Мысли могут чаще возвращаться к образованию, путешествиям, другой стране, преподаванию и вопросам смысла. Важна перспектива: куда я иду, чему верю, ради чего учусь? Новый опыт способен вдохновлять и одновременно вызывать волнение перед неизвестным.","Что может радовать и волновать":"Радуют интересный наставник, поездка, глубокое понимание темы. Волновать могут экзамены, языковой барьер, оформление документов или разочарование в прежнем авторитете.","Цели на выбор":"Выбрать обучение по собственным задачам; подготовиться к значимой поездке; сформулировать личные ориентиры; делиться опытом без требования знать всё.","Желание своими словами":"«Хочу видеть перед собой интересное направление и чувствовать, что мои шаги имеют смысл».","Как себя поддержать":"Разделяй мечту и условия её реализации. Проверяй информацию, готовь документы заранее, задавай вопросы преподавателю. Оставляй право менять мнение после нового опыта.","Где можно застрять":"Идеализировать учителя или другую страну, бесконечно искать своё предназначение или считать сомнения признаком неправильного пути.","Вопрос к себе":"Какой опыт поможет мне проверить свои представления, а не только укрепить их?"},"10":{"title":"Переживания о своём месте","Эмоциональная тема":"Карьера, достижения, профессиональная оценка и ответственность могут становиться особенно чувствительными. Хочется понимать, что твои усилия замечают и ты движешься в подходящем направлении. Иногда эмоционально значимы отношения с руководителем или родителями.","Что может радовать и волновать":"Радуют доверие, завершённая задача, признанный результат. Волновать могут неопределённость роли, сравнение с коллегами, новая ответственность или ощущение, что нужно постоянно доказывать компетентность.","Цели на выбор":"Определить собственные критерии успеха; научиться обсуждать ожидания; отделять рабочую обратную связь от оценки себя; выбирать посильную ответственность.","Желание своими словами":"«Хочу чувствовать себя увереннее в профессии и понимать, ради чего стараюсь».","Как себя поддержать":"Записывай выполненное, а не только оставшиеся задачи. Уточняй требования к результату. Обсуждай сложные решения с человеком, который знает рабочий контекст и способен дать предметную обратную связь.","Где можно застрять":"Считать неудачу доказательством несостоятельности, жить ради похвалы или игнорировать личную жизнь ради видимости успеха.","Вопрос к себе":"Я сейчас решаю рабочую задачу или пытаюсь доказать, что достойна уважения?"},"11":{"title":"Потребность быть среди своих","Эмоциональная тема":"Важнее становится чувство принадлежности к кругу людей: друзьям, сообществу, команде, аудитории. Может хотеться больше общения и совместных планов. Особую чувствительность вызывают включённость, взаимность и возможность оставаться собой в группе.","Что может радовать и волновать":"Радуют дружеская инициатива, общая идея, поддержка участников. Волновать могут отсутствие отклика, разногласия в коллективе или изменение дружеского круга. События в жизни друзей могут занимать много внимания.","Цели на выбор":"Развивать несколько взаимных связей; найти подходящее сообщество; обсуждать ожидания от командной работы; уменьшить зависимость от реакции аудитории.","Желание своими словами":"«Хочу чувствовать себя частью своего круга и сохранять в нём собственный голос».","Как себя поддержать":"Смотри на реальное качество контакта, а не только на активность чата. Предлагай конкретные встречи. Разрешай людям отличаться от тебя и проверяй взаимность во времени.","Где можно застрять":"Принимать отписку за личное отвержение, быть удобной ради места в группе или ожидать близости от всех знакомых.","Вопрос к себе":"В каких отношениях я чувствую взаимность, а где только пытаюсь её заслужить?"},"12":{"title":"Чувствам нужно тихое место","Эмоциональная тема":"Может усиливаться потребность в уединении, личном пространстве, творчестве и осмыслении переживаний. Не всё хочется сразу обсуждать публично. Важно найти безопасный способ оставаться в контакте с собой и при этом не лишаться человеческой поддержки.","Что может радовать и волновать":"Радуют тишина, природа, музыка, возможность работать без постоянного внимания. Волновать могут ощущение оторванности, скрываемые переживания или усталость от длительной заботы о других.","Цели на выбор":"Выделить личное время; найти подходящую поддержку; завершить эмоционально тяжёлое дело; дать творчеству место без публичной оценки.","Желание своими словами":"«Хочу бережно разобраться в своих чувствах и не оставаться с трудным совсем одна».","Как себя поддержать":"Различай желанное уединение и изоляцию, после которой тяжелее. Сохраняй доступный контакт с близким человеком. Если состояние долго мешает обычной жизни, обращайся за профессиональной помощью.","Где можно застрять":"Молчать о потребностях, спасать всех втайне от собственной усталости или ждать, что любая практика решит реальные трудности. Дом не является диагнозом.","Вопрос к себе":"Мне сейчас нужна тишина, выражение чувств или разговор с тем, кто может поддержать?"}}};
+
+const IND = {
+  asc:{name:'Асцендент',short:'Асц',glyph:'AC',role:'Фон года',q:'С чем мне предстоит чаще взаимодействовать и как я хочу участвовать в этой сфере?',
+    hint:'В какой дом натальной карты попадает Асцендент соляра',houseWord:'натальный дом',cls:'c-asc',
+    order:['Фон года','Как это бывает','Цели на выбор','Желание своими словами','Что делать','Где можно застрять','Вопрос к себе']},
+  mc:{name:'МС',short:'МС',glyph:'MC',role:'Возможный итог',q:'Что в этой сфере может стать результатом года и к какому результату хочу прийти я?',
+    hint:'В какой дом натальной карты попадает МС соляра',houseWord:'натальный дом',cls:'c-mc',
+    order:['Возможный итог','Как это бывает','Цели на выбор','Желание своими словами','Путь к результату','Где можно застрять','Как заметить итог']},
+  sun:{name:'Солнце',short:'Солнце',glyph:'☉',role:'Ключевая тема',q:'Во что я сознательно вкладываю усилия?',
+    hint:'В каком доме самой солярной карты стоит Солнце',houseWord:'солярный дом',cls:'c-sun',
+    order:['Ключевая тема','Как это бывает','Цели на выбор','Желание своими словами','Куда направить усилия','Где можно застрять','Как проверять движение']},
+  moon:{name:'Луна',short:'Луна',glyph:'☽',role:'Эмоциональная тема',q:'Что меня особенно занимает и как я могу себя поддержать?',
+    hint:'В каком доме самой солярной карты стоит Луна',houseWord:'солярный дом',cls:'c-moon',
+    order:['Эмоциональная тема','Что может радовать и волновать','Цели на выбор','Желание своими словами','Как себя поддержать','Где можно застрять','Вопрос к себе']}
+};
+const KEYS=['asc','mc','sun','moon'];
+const ROLEDESC={
+  asc:'Проекция в натальный дом выделяет среду приложения личных усилий и повседневные темы.',
+  mc:'Проекция в натальный дом — ориентир итогов, того, что может оформиться за год.',
+  sun:'Дом Солнца выделяет сферу инициативы, заметных задач и приложения энергии.',
+  moon:'Дом Луны описывает тему вовлечённости, потребности в поддержке, возможных радостей и волнений.'
+};
+const CHECKS=['Она нужна мне, а не появилась только потому, что я прочитала трактовку.',
+ 'Я понимаю, какая часть зависит от меня, а какая — от других людей и обстоятельств.',
+ 'На неё есть время, силы и доступные ресурсы либо понятный путь их найти.',
+ 'Я могу назвать признак продвижения и дату пересмотра плана.',
+ 'Ради неё не нужно создавать ненужный риск или нарушать собственные границы.'];
+const ORD=['первом','втором','третьем','четвёртом','пятом','шестом','седьмом','восьмом','девятом','десятом','одиннадцатом','двенадцатом'];
+const ORDN=['первый','второй','третий','четвёртый','пятый','шестой','седьмой','восьмой','девятый','десятый','одиннадцатый','двенадцатый'];
+
+const VK_URL='https://vk.ru/im?sel=-224753072';
+const TG_USER='jain1109';
+const STORE='solar48_v1';
+
+let S={h:{asc:null,mc:null,sun:null,moon:null},goals:[],checks:[],f:{},pStart:'',pEnd:'',tab:'asc'};
+
+/* storage */
+function load(){try{const r=localStorage.getItem(STORE);if(r){const o=JSON.parse(r);S=Object.assign(S,o);S.h=Object.assign({asc:null,mc:null,sun:null,moon:null},o.h||{});}}catch(e){}}
+let saveT;function save(show){try{localStorage.setItem(STORE,JSON.stringify(S));if(show){const el=document.getElementById('saved');el.textContent='Сохранено в этом браузере';clearTimeout(saveT);saveT=setTimeout(()=>el.textContent='',1800);}}catch(e){}}
+load();
+/* URL state overrides */
+(function(){const u=new URLSearchParams(location.search);let any=false;KEYS.forEach(k=>{const v=parseInt(u.get(k),10);if(v>=1&&v<=12){S.h[k]=v;any=true;}});if(any)S._fromUrl=true;})();
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('show'),2600);}
+function chosenKeys(){return KEYS.filter(k=>S.h[k]);}
+function pos(k){return S.h[k]?DATA[k][S.h[k]]:null;}
+function goalsOf(k,h){return DATA[k][h]['Цели на выбор'].replace(/\.$/,'').split(/;\s*/).map(s=>s.charAt(0).toUpperCase()+s.slice(1));}
+function fmtDate(d){if(!d)return'';const [y,m,dd]=d.split('-');return `${dd}.${m}.${y}`;}
+
+/* ===== views ===== */
+function show(v){
+  if(v==='result'&&!chosenKeys().length)v='pick';
+  document.querySelectorAll('.view').forEach(e=>e.classList.toggle('hidden',e.id!=='v-'+v));
+  document.querySelectorAll('.tl').forEach(b=>b.classList.toggle('on',b.dataset.go===v));
+  $('#ctaWrap').classList.toggle('hidden',v==='home'||v==='pick');
+  if(v==='result')renderResult();
+  if(v==='sheet')renderSheet();
+  if(v==='pick')renderPicks();
+  window.scrollTo(0,0);
+  syncUrl();
+}
+function syncUrl(){try{const u=new URLSearchParams();KEYS.forEach(k=>{if(S.h[k])u.set(k,S.h[k]);});const q=u.toString();history.replaceState(null,'',location.pathname+(q?'?'+q:''));}catch(e){}}
+document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g){e.preventDefault();show(g.dataset.go);}});
+$('#toHow').onclick=()=>document.getElementById('how').scrollIntoView({behavior:'smooth'});
+
+/* ===== home roles ===== */
+$('#roles').innerHTML=KEYS.map(k=>{const i=IND[k];return `<div class="role"><div class="glyph ${i.cls}" ${k==='sun'?'style="color:var(--deep)"':''}>${i.glyph}</div><div class="rname">${i.name}</div><div class="rrole">${i.role}</div><div class="rq">«${i.q}»</div></div>`}).join('');
+
+/* ===== picks ===== */
+function renderPicks(){
+  $('#picks').innerHTML=KEYS.map(k=>{const i=IND[k];
+    return `<div class="card pick" data-k="${k}"><div class="pick-head"><div class="glyph ${i.cls}" ${k==='sun'?'style="color:var(--deep)"':''}>${i.glyph}</div><div><div class="pick-title">${i.name} · ${i.role.toLowerCase()}</div><div class="pick-hint">${i.hint}</div></div></div>
+    <div class="chips">${Array.from({length:12},(_,n)=>`<button class="chip${S.h[k]===n+1?' on':''}" data-k="${k}" data-h="${n+1}" aria-label="${i.name}: ${n+1} дом">${n+1}</button>`).join('')}</div>
+    <div class="pick-sel">${S.h[k]?`${S.h[k]} ${i.houseWord} — ${esc(DATA[k][S.h[k]].title)}`:''}</div></div>`}).join('');
+  $('#pStart').value=S.pStart||'';$('#pEnd').value=S.pEnd||'';
+  updGo();
+}
+$('#picks').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;const k=c.dataset.k,h=+c.dataset.h;S.h[k]=S.h[k]===h?null:h;save();
+  const card=c.closest('.pick');card.querySelectorAll('.chip').forEach(b=>b.classList.toggle('on',+b.dataset.h===S.h[k]));
+  card.querySelector('.pick-sel').textContent=S.h[k]?`${S.h[k]} ${IND[k].houseWord} — ${DATA[k][S.h[k]].title}`:'';updGo();syncUrl();});
+['pStart','pEnd'].forEach(id=>$('#'+id).addEventListener('change',e=>{S[id]=e.target.value;save();}));
+function updGo(){const n=chosenKeys().length;$('#goRead').disabled=!n;$('#pickNote').textContent=n===4?'Все четыре дома выбраны':n?`Выбрано ${n} из 4 — можно читать уже сейчас`:'Выбери хотя бы один дом';}
+$('#goRead').onclick=()=>{const c=chosenKeys();if(!c.includes(S.tab))S.tab=c[0];show('result');};
+
+/* ===== result ===== */
+function renderResult(){
+  const c=chosenKeys();if(!c.includes(S.tab))S.tab=c[0];
+  $('#resPeriod').textContent=(S.pStart||S.pEnd)?`Солярный год · ${fmtDate(S.pStart)||'…'} — ${fmtDate(S.pEnd)||'…'}`:'Твой солярный год';
+  $('#strip').innerHTML=KEYS.map(k=>{const i=IND[k],p=pos(k);
+    return `<button class="sbox ${i.cls}${p?'':' off'}${S.tab===k?' cur':''}" data-tab="${k}"><div class="s1">${i.role}</div><div class="s2">${p?`${i.short} · ${S.h[k]}`:i.short}</div><div class="s3">${p?esc(p.title):'дом не выбран'}</div></button>`}).join('');
+  /* repeats */
+  const by={};c.forEach(k=>{(by[S.h[k]]=by[S.h[k]]||[]).push(k);});
+  const rep=Object.entries(by).filter(([h,a])=>a.length>1);
+  $('#repeats').innerHTML=rep.map(([h,a])=>`<div class="repeat"><b>Повтор: ${ORDN[h-1]} дом у ${a.map(k=>IND[k].name).join(' и ')}.</b> ${a.includes('sun')&&a.includes('moon')?'Сфера одновременно значима для действий и чувств. ':''}Это усиливает тематический акцент, но не доказывает конкретный исход. Сфера одна — роль у каждого показателя своя.</div>`).join('');
+  $('#tabs').innerHTML=KEYS.filter(k=>S.h[k]).map(k=>`<button class="tab${S.tab===k?' on':''}" data-tab="${k}">${IND[k].role}</button>`).join('');
+  renderRead();
+}
+function renderRead(){
+  const k=S.tab,i=IND[k],h=S.h[k],p=DATA[k][h];
+  const [mainL,howL,,wishL,actL,trapL,lastL]=i.order;
+  const gl=goalsOf(k,h);
+  const isAsk=lastL==='Вопрос к себе';
+  $('#read').innerHTML=`
+  <div class="read-head ${i.cls}"><div class="big">${h}</div>
+    <div class="kicker">${i.name} · ${h} ${i.houseWord} · ${i.role}</div>
+    <h2>${esc(p.title)}</h2><div class="q">${ROLEDESC[k]}</div></div>
+  <div class="read-body">
+    <div class="blk main"><div class="blk-l">${mainL}</div><p>${esc(p[mainL])}</p></div>
+    <div class="blk"><div class="blk-l">${howL}</div><p>${esc(p[howL])}</p></div>
+    <div class="blk"><div class="blk-l">Цели на выбор</div>
+      <div class="goals">${gl.map((g,n)=>{const id=`${k}-${h}-${n}`;return `<button class="goal${S.goals.includes(id)?' on':''}" data-g="${id}"><span class="box">✓</span><span>${esc(g)}</span></button>`}).join('')}</div>
+      <p class="goal-hint">Отметь то, что откликается, — цель попадёт в рабочий лист. Достаточно одной.</p></div>
+    <div class="blk"><div class="blk-l">${wishL}</div><p class="wish">${esc(p[wishL])}</p></div>
+    <div class="blk"><div class="blk-l">${actL}</div><p>${esc(p[actL])}</p></div>
+    <div class="blk trap"><div class="blk-l">${trapL}</div><p>${esc(p[trapL])}</p></div>
+    <div class="blk ${isAsk?'ask':''}"><div class="blk-l">${lastL}</div><p>${esc(p[lastL])}</p></div>
+  </div>
+  <div class="other"><div class="lbl">Посмотреть ${i.name === 'Луна' ? 'Луну' : i.name} в другом доме:</div>
+    <div class="mini">${Array.from({length:12},(_,n)=>`<button class="chip${h===n+1?' on':''}" data-oh="${n+1}" style="${h===n+1?`background:var(--${{asc:'caramel',mc:'burg',sun:'gold',moon:'choco'}[k]});${k==='sun'?'color:var(--deep)':''}`:''}">${n+1}</button>`).join('')}</div></div>`;
+  const c=KEYS.filter(x=>S.h[x]),ix=c.indexOf(k);
+  $('#prevT').style.visibility=ix>0?'visible':'hidden';
+  $('#nextT').textContent=ix<c.length-1?`${IND[c[ix+1]].role} →`:'Как соединить →';
+}
+document.getElementById('v-result').addEventListener('click',e=>{
+  const t=e.target.closest('[data-tab]');
+  if(t){const k=t.dataset.tab;if(!S.h[k]){show('pick');return;}S.tab=k;save();renderResult();$('#tabs').scrollIntoView({behavior:'smooth',block:'start'});return;}
+  const g=e.target.closest('.goal');
+  if(g){const id=g.dataset.g,ix=S.goals.indexOf(id);if(ix>=0)S.goals.splice(ix,1);else{S.goals.push(id);const cnt=currentGoals().length;if(cnt>3)toast('Уже больше трёх целей — в рабочем листе оставь самые важные');}g.classList.toggle('on');save();return;}
+  const o=e.target.closest('[data-oh]');
+  if(o){S.h[S.tab]=+o.dataset.oh;save();syncUrl();renderResult();return;}
+});
+$('#prevT').onclick=()=>{const c=chosenKeys(),ix=c.indexOf(S.tab);if(ix>0){S.tab=c[ix-1];renderResult();$('#tabs').scrollIntoView({behavior:'smooth'});}};
+$('#nextT').onclick=()=>{const c=chosenKeys(),ix=c.indexOf(S.tab);if(ix<c.length-1){S.tab=c[ix+1];save();renderResult();$('#tabs').scrollIntoView({behavior:'smooth'});}else document.getElementById('combine').scrollIntoView({behavior:'smooth'});};
+
+/* ===== sheet ===== */
+function currentGoals(){return S.goals.filter(id=>{const [k,h]=id.split('-');return S.h[k]===+h;});}
+function goalText(id){const [k,h,n]=id.split('-');return goalsOf(k,+h)[+n];}
+function autoLine(k){const p=pos(k);return p?`${S.h[k]} ${IND[k].houseWord} — ${p.title}`:'';}
+function renderSheet(){
+  const per=(S.pStart||S.pEnd)?`${fmtDate(S.pStart)||'…'} — ${fmtDate(S.pEnd)||'…'}`:'';
+  const a=$('#a-period');a.textContent=per||'Даты не указаны — их можно добавить на шаге «Дома»';a.classList.toggle('empty',!per);
+  KEYS.forEach(k=>{const el=$('#a-'+k),t=autoLine(k);el.textContent=t||'Дом не выбран';el.classList.toggle('empty',!t);});
+  const g=currentGoals();
+  $('#chosen').innerHTML=g.length?g.map(id=>{const k=id.split('-')[0];return `<div class="cg"><i class="${IND[k].cls}">${IND[k].short}</i><span>${esc(goalText(id))}</span><button data-rm="${id}" aria-label="Убрать">×</button></div>`}).join('')
+    :`<div class="auto empty">Цели пока не отмечены — их можно выбрать в прочтении</div>`;
+  $('#checks').innerHTML=CHECKS.map((c,n)=>`<button class="goal${S.checks.includes(n)?' on':''}" data-ck="${n}"><span class="box">✓</span><span>${c}</span></button>`).join('');
+  document.querySelectorAll('#ws textarea').forEach(t=>{t.value=S.f[t.dataset.f]||'';});
+}
+$('#ws').addEventListener('input',e=>{const t=e.target.closest('textarea');if(!t)return;S.f[t.dataset.f]=t.value;save(true);});
+$('#ws').addEventListener('click',e=>{
+  const r=e.target.closest('[data-rm]');if(r){S.goals=S.goals.filter(x=>x!==r.dataset.rm);save();renderSheet();return;}
+  const c=e.target.closest('[data-ck]');if(c){const n=+c.dataset.ck,ix=S.checks.indexOf(n);ix>=0?S.checks.splice(ix,1):S.checks.push(n);c.classList.toggle('on');save();}
+});
+function sheetText(){
+  const per=(S.pStart||S.pEnd)?`${fmtDate(S.pStart)||'…'} — ${fmtDate(S.pEnd)||'…'}`:'';
+  const L=[];L.push('МОИ ОРИЕНТИРЫ НА СОЛЯРНЫЙ ГОД','');
+  const add=(t,auto,f)=>{L.push(t.toUpperCase());if(auto)L.push(auto);if(S.f[f])L.push(S.f[f]);L.push('');};
+  add('Период',per,'period');
+  add('Асцендент · фон года',autoLine('asc'),'asc');
+  add('Солнце · ключевая тема',autoLine('sun'),'sun');
+  add('Луна · эмоциональная тема',autoLine('moon'),'moon');
+  add('МС · возможный итог',autoLine('mc'),'mc');
+  L.push('МОИ ПРИОРИТЕТЫ');currentGoals().forEach(id=>L.push('— '+goalText(id)));if(S.f.prio)L.push(S.f.prio);L.push('');
+  add('Реалистичность','','real');add('Первый шаг','','step');add('Проверка','','check');
+  return L.join('\n').replace(/\n{3,}/g,'\n\n').trim();
+}
+$('#doCopy').onclick=()=>copy(sheetText()).then(ok=>toast(ok?'Текст скопирован — вставь в заметки':'Не получилось скопировать — выдели текст вручную'));
+$('#doPrint').onclick=()=>{
+  const per=(S.pStart||S.pEnd)?`${fmtDate(S.pStart)||'…'} — ${fmtDate(S.pEnd)||'…'}`:'—';
+  const blk=(t,auto,f)=>`<h3>${t}</h3>${auto?`<p><b>${esc(auto)}</b></p>`:''}<p class="pl">${esc(S.f[f]||' ')}</p>`;
+  $('#printout').innerHTML=`<p class="eyebrow">Евгения Вакорина · Солярный прогноз</p><h1>Мои ориентиры на солярный год</h1>
+   ${blk('Период',per,'period')}${blk('Асцендент · фон года',autoLine('asc'),'asc')}${blk('Солнце · ключевая тема',autoLine('sun'),'sun')}${blk('Луна · эмоциональная тема',autoLine('moon'),'moon')}${blk('МС · возможный итог',autoLine('mc'),'mc')}
+   <h3>Мои приоритеты</h3>${currentGoals().map(id=>`<p>— ${esc(goalText(id))}</p>`).join('')}<p class="pl">${esc(S.f.prio||' ')}</p>
+   ${blk('Реалистичность','','real')}${blk('Первый шаг','','step')}${blk('Проверка','','check')}`;
+  window.print();
+};
+$('#doClear').onclick=()=>{if(!confirm('Очистить записи рабочего листа? Выбранные дома останутся.'))return;S.f={};S.goals=[];S.checks=[];save();renderSheet();toast('Рабочий лист очищен');};
+
+/* ===== copy helper ===== */
+function copy(t){
+  if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(t).then(()=>true).catch(()=>fallback(t));
+  return Promise.resolve(fallback(t));
+  function fallback(t){try{const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();const ok=document.execCommand('copy');a.remove();return ok;}catch(e){return false;}}
+}
+
+/* ===== CTA ===== */
+function dmText(){
+  const parts=KEYS.filter(k=>S.h[k]).map(k=>`${IND[k].short} — ${S.h[k]} дом`);
+  return `Евгения, здравствуйте! Я строю свой солярный прогноз${parts.length?` (${parts.join(', ')})`:''}. Хочу задать вопрос: `;
+}
+$('#ctaVk').addEventListener('click',()=>{
+  copy(dmText()).then(ok=>{$('#copied').textContent=ok?'Текст сообщения скопирован — вставь его в диалог и допиши свой вопрос.':'';});
+});
+$('#ctaTg').addEventListener('click',e=>{e.currentTarget.href=`https://t.me/${TG_USER}?text=${encodeURIComponent(dmText())}`;});
+
+/* ===== init ===== */
+show(S._fromUrl&&chosenKeys().length?'result':'home');
+delete S._fromUrl;
+</script>
+</body>
+</html>
